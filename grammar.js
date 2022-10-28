@@ -20,6 +20,6 @@ module.exports = grammar({
       $.hello,
     ),
     hello: $ => 'hello',
-    comment: $ => token(seq('//')),
+    comment: $ => token(seq('//', /.*/)),
   }
 })
