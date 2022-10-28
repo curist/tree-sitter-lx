@@ -5,6 +5,7 @@
   "main": "bindings/node",
   "scripts": {
     "generate": "tree-sitter generate",
+    "pretest": "npm run generate",
     "test": "tree-sitter test",
     "dump": "tree-sitter dump-languages",
     "highlight": "tree-sitter highlight test/highlight/function.lx"

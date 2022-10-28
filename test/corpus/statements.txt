@@ -1,9 +1,13 @@
 ==================
-Return statements
+Dummy program text
 ==================
 
+#!/usr/bin/env lx
 hello
 
 ---
 
-(source_file)
+(source_file
+ (shebang)
+ (expression
+  (hello)))
