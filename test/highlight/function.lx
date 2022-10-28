@@ -1,0 +1,16 @@
+var abc = function(d) {
+  // <- keyword
+  //          ^ keyword
+  //               ^ variable.parameter
+  // ^ function
+
+  if (a) {
+  // <- keyword
+  // ^ punctuation.bracket
+
+    foo(`foo ${bar}`);
+    // <- function
+    //    ^ string
+    //          ^ variable
+  }
+};
