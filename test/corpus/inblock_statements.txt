@@ -7,7 +7,7 @@ inblock statements
   aa // like in lua, `return` can only appear at the end of a block
 }
 fn print(x) {
-  return x
+  return 1 + x * 2
 }
 
 let a = "x"
@@ -32,8 +32,12 @@ return what
   (parameter_list
    (identifier))
   (function_body
-   (identifier)
-   (identifier)))
+   (return
+    (binary_expression
+     (number)
+     (binary_expression
+      (identifier)
+      (number))))))
  (variable_declaration
   (identifier)
   (string
