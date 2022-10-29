@@ -8,6 +8,18 @@ module.exports = grammar({
     /[\s\n\t]/,
   ],
 
+  precedences: _ => [
+    [
+      'unary',
+      'binary_times',
+      'binary_plus',
+      'binary_relation',
+      'binary_equality',
+      'logical_and',
+      'logical_or',
+    ],
+  ],
+
   rules: {
     source_file: $ => seq(
       optional($.shell_bang),
@@ -15,11 +27,34 @@ module.exports = grammar({
     ),
     shell_bang: _ => token.immediate(/#!.*/),
     _expression: $ => seq(choice(
-      $._primary,
+      $.binary_expression,
       $.array,
+      $._primary,
     )),
 
+    binary_expression: $ => choice(
+      ...[
+        ['and', 'logical_and'],
+        ['or', 'logical_or'],
+        ['+', 'binary_plus'],
+        ['-', 'binary_plus'],
+        ['*', 'binary_times'],
+        ['/', 'binary_times'],
+        ['<', 'binary_relation'],
+        ['<=', 'binary_relation'],
+        ['==', 'binary_equality'],
+        ['!=', 'binary_equality'],
+        ['>=', 'binary_relation'],
+        ['>', 'binary_relation'],
+      ].map(([operator, precedence]) => prec.left(precedence, seq(
+        field('left', $._expression),
+        field('operator', operator),
+        field('right', $._expression),
+      )))
+    ),
+
     array: $ => seq('[', repeat(seq($._expression, optional(','))), ']'),
+
     _primary: $ => choice(
       $.identifier,
       $.number,
@@ -48,6 +83,7 @@ module.exports = grammar({
     )),
     boolean: _ => choice('true', 'false'),
     nil: _ => 'nil',
+
     comment: _ => seq('//', /.*/),
   }
 })

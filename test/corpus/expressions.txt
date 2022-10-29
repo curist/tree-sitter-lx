@@ -1,0 +1,21 @@
+======================
+binary expressions
+======================
+a + 1
+a - b * c
+a / b + c
+---
+(source_file
+ (binary_expression
+  (identifier)
+  (number))
+ (binary_expression
+  (identifier)
+  (binary_expression
+   (identifier)
+   (identifier)))
+ (binary_expression
+  (binary_expression
+   (identifier)
+   (identifier))
+  (identifier)))
