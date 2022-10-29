@@ -57,3 +57,31 @@ a + (b)(c)
     (identifier))
    (argument_list
     (identifier)))))
+
+========================
+more expression calling
+========================
+a(1)()
+a()(1)
+a + b() * c
+---
+(source_file
+ (call
+  (call
+   (identifier)
+   (argument_list
+    (number)))
+  (argument_list))
+ (call
+  (call
+   (identifier)
+   (argument_list))
+  (argument_list
+   (number)))
+ (binary_expression
+  (identifier)
+  (binary_expression
+   (call
+    (identifier)
+    (argument_list))
+   (identifier))))

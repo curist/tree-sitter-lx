@@ -41,7 +41,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "call"
+              "name": "_call"
             },
             {
               "type": "SYMBOL",
@@ -54,32 +54,41 @@
             {
               "type": "SYMBOL",
               "name": "array"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_primary"
             }
           ]
         }
       ]
     },
-    "call": {
-      "type": "PREC",
+    "_call": {
+      "type": "PREC_RIGHT",
       "value": 1,
       "content": {
-        "type": "SEQ",
+        "type": "CHOICE",
         "members": [
           {
             "type": "SYMBOL",
             "name": "_primary"
           },
           {
-            "type": "FIELD",
-            "name": "arguments",
-            "content": {
-              "type": "SYMBOL",
-              "name": "argument_list"
-            }
+            "type": "SYMBOL",
+            "name": "call"
+          }
+        ]
+      }
+    },
+    "call": {
+      "type": "PREC_RIGHT",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_call"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "argument_list"
           }
         ]
       }
