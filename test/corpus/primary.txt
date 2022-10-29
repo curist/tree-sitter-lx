@@ -44,11 +44,15 @@ identifier
 asdf
 _foo
 bar11
-0xx
+11aa
+// ^ this surprisingly will be parsed as (number)(identifier)
 ---
 (source_file
  (identifier)
  (identifier)
- (identifier))
+ (identifier)
+ (number)
+ (identifier)
+ (comment))
 
 

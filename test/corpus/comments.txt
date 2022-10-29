@@ -1,0 +1,21 @@
+======================
+single line comment
+======================
+// hello
+//world
+---
+(source_file
+ (comment)
+ (comment))
+
+======================
+inline comment
+======================
+a random statement // hello
+---
+(source_file
+ (identifier)
+ (identifier)
+ (identifier)
+ (comment))
+
