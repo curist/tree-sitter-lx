@@ -8,28 +8,6 @@ module.exports = grammar({
     /[\s\n\t]/,
   ],
 
-  precedences: $ => [
-    // [
-    //   $.source_file,
-    //   $._expression,
-    // ],
-    // [
-    //   $.field_access,
-    //   $.array,
-    // ],
-  ],
-
-  conflicts: $ => [
-    // [
-    //   $.field_access,
-    //   $.array,
-    // ],
-    // [
-    //   $.source_file,
-    //   $._expression,
-    // ],
-  ],
-
   rules: {
     source_file: $ => seq(
       optional($.shell_bang),
@@ -37,21 +15,10 @@ module.exports = grammar({
     ),
     shell_bang: _ => token.immediate(/#!.*/),
     _expression: $ => seq(choice(
-      // $.field_access,
       $._primary,
       $.array,
     )),
 
-    /* TODO:
-    _block_statements: $ => choice(
-      $.defer_statement,
-      $.return_statement,
-    ),
-    defer_statement: $ => seq('defer', $._expression),
-    return_statement: $ => seq('return', $._expression),
-    */
-
-    // field_access: $ => prec.right(seq($._expression, '[', $._expression, ']')),
     array: $ => seq('[', repeat(seq($._expression, optional(','))), ']'),
     _primary: $ => choice(
       $.identifier,
