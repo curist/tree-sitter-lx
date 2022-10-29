@@ -1,4 +1,19 @@
 ======================
+import statement
+======================
+import a
+let x = import "foo"
+---
+(source_file
+ (import
+  (identifier))
+ (variable_declaration
+  (identifier)
+  (import
+   (string
+    (string_fragment)))))
+
+======================
 binary expressions
 ======================
 a + 1

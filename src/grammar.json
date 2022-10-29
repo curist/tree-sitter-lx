@@ -53,6 +53,10 @@
           "members": [
             {
               "type": "SYMBOL",
+              "name": "import"
+            },
+            {
+              "type": "SYMBOL",
               "name": "_declaration"
             },
             {
@@ -98,6 +102,23 @@
           ]
         }
       ]
+    },
+    "import": {
+      "type": "PREC_LEFT",
+      "value": "unary",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "import"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        ]
+      }
     },
     "block": {
       "type": "CHOICE",

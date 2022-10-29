@@ -31,6 +31,7 @@ module.exports = grammar({
     ),
     shell_bang: _ => token.immediate(/#!.*/),
     _expression: $ => seq(choice(
+      $.import,
       $._declaration,
       $.assignment,
       $.unary_expression,
@@ -43,6 +44,8 @@ module.exports = grammar({
       $.while,
       $.for,
     )),
+
+    import: $ => prec.left('unary', seq('import', $._expression)),
 
     block: $ => choice(
       seq('{', repeat1(choice($._expression, $._block_statement)), optional($.return), '}'),
