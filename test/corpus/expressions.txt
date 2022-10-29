@@ -4,6 +4,7 @@ import statement
 import a
 let x = import "foo"
 import a + b
+let foo = import a + b * c
 ---
 (source_file
  (import
@@ -16,7 +17,15 @@ import a + b
  (import
   (binary_expression
    (identifier)
-   (identifier))))
+   (identifier)))
+ (variable_declaration
+  (identifier)
+  (import
+   (binary_expression
+    (identifier)
+    (binary_expression
+     (identifier)
+     (identifier))))))
 
 ======================
 binary expressions
