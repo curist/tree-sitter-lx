@@ -1,0 +1,13 @@
+======================
+array access
+======================
+// skip for now
+// a[10]
+// a[0][1]
+---
+(source_file
+ (comment)
+ (comment)
+ (comment))
+
+

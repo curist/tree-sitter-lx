@@ -8,17 +8,50 @@ module.exports = grammar({
     /[\s\n\t]/,
   ],
 
+  precedences: $ => [
+    // [
+    //   $.source_file,
+    //   $._expression,
+    // ],
+    // [
+    //   $.field_access,
+    //   $.array,
+    // ],
+  ],
+
+  conflicts: $ => [
+    // [
+    //   $.field_access,
+    //   $.array,
+    // ],
+    // [
+    //   $.source_file,
+    //   $._expression,
+    // ],
+  ],
+
   rules: {
     source_file: $ => seq(
       optional($.shell_bang),
       repeat($._expression),
     ),
     shell_bang: _ => token.immediate(/#!.*/),
-    _expression: $ => choice(
+    _expression: $ => seq(choice(
+      // $.field_access,
       $._primary,
       $.array,
+    )),
+
+    /* TODO:
+    _block_statements: $ => choice(
+      $.defer_statement,
+      $.return_statement,
     ),
-    field_access: $ => seq($._expression, '[', $._expression, ']'),
+    defer_statement: $ => seq('defer', $._expression),
+    return_statement: $ => seq('return', $._expression),
+    */
+
+    // field_access: $ => prec.right(seq($._expression, '[', $._expression, ']')),
     array: $ => seq('[', repeat(seq($._expression, optional(','))), ']'),
     _primary: $ => choice(
       $.identifier,
@@ -48,7 +81,7 @@ module.exports = grammar({
     )),
     boolean: _ => choice('true', 'false'),
     nil: _ => 'nil',
-    comment: _ => token(seq('//', /.*/)),
+    comment: _ => seq('//', /.*/),
   }
 })
 
