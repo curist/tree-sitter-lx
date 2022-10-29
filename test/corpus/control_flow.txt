@@ -1,9 +1,9 @@
 ==========================
 if then else
 ==========================
-if a {}
-if x {if x {}}
-if if x {}{}
+if a {_}
+if x {if x {_}}
+if if x {_}{_}
 
 let cond = random() > 0.5
 let a = if cond { false } else true 
@@ -21,7 +21,8 @@ if cond {
  (if
   (cond
    (identifier))
-  (then_clause))
+  (then_clause
+   (identifier)))
  (if
   (cond
    (identifier))
@@ -29,21 +30,24 @@ if cond {
    (if
     (cond
      (identifier))
-    (then_clause))))
+    (then_clause
+     (identifier)))))
  (if
   (cond
    (if
     (cond
      (identifier))
-    (then_clause)))
-  (then_clause))
- (variable_declaration
-  (identifier)
-  (binary_expression
-   (call
-    (identifier)
-    (argument_list))
-   (number)))
+    (then_clause
+     (identifier))))
+  (then_clause
+   (identifier)))
+  (variable_declaration
+   (identifier)
+   (binary_expression
+    (call
+     (identifier)
+     (argument_list))
+    (number)))
   (variable_declaration
    (identifier)
    (if
@@ -70,31 +74,36 @@ if cond {
       (block
        (number)))))))
 
+
 ==========================
 while loop - basic
 ==========================
-while true {}
-a = while x {}
-while while x {} {}
+while true {_}
+a = while x {_}
+while while x {_} {_}
 ---
 (source_file
  (while
   (cond
    (boolean))
-  (block))
+  (block
+   (identifier)))
  (assignment
   (identifier)
   (while
    (cond
     (identifier))
-   (block)))
+   (block
+    (identifier))))
  (while
   (cond
    (while
     (cond
      (identifier))
-    (block)))
-  (block)))
+    (block
+     (identifier))))
+  (block
+   (identifier))))
 
 
 ==========================
@@ -160,9 +169,9 @@ while (while x < 10 {
 for loop
 ==========================
 let i
-for i = 0; i < 10; i = i + 1 {}
+for i = 0; i < 10; i = i + 1 {_}
 
-for let x = 0; true; {}
+for let x = 0; true; {_}
 for ; ; { print(endless) }
 
 ---
@@ -184,7 +193,8 @@ for ; ; { print(endless) }
     (binary_expression
      (identifier)
      (number))))
-  (block))
+  (block
+   (identifier)))
  (for
   (init
    (variable_declaration
@@ -192,7 +202,8 @@ for ; ; { print(endless) }
     (number)))
   (cond
    (boolean))
-  (block))
+  (block
+   (identifier)))
  (for
   (block
    (call
@@ -204,16 +215,40 @@ for ; ; { print(endless) }
 ==========================
 for loop - nesting
 ==========================
-for ;; for;;{} {}
-for ; for;;{} ;{}
-for for;;{} ;; {}
-for (for;;{}) ;; {}
+for ;; for;;{_} {_}
+for ; for;;{_} ;{_}
+for for;;{_} ;; {_}
+for (for;;{_}) ;; {_}
 ---
 (source_file
- (for (iter (for (block))) (block))
- (for (cond (for (block))) (block))
- (for (init (for (block))) (block))
- (for (init (for (block))) (block)))
+ (for
+  (iter
+   (for
+    (block
+     (identifier))))
+  (block
+   (identifier)))
+ (for
+  (cond
+   (for
+    (block
+     (identifier))))
+  (block
+   (identifier)))
+ (for
+  (init
+   (for
+    (block
+     (identifier))))
+  (block
+   (identifier)))
+ (for
+  (init
+   (for
+    (block
+     (identifier))))
+  (block
+   (identifier))))
 
 
 ==========================

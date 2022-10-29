@@ -2,8 +2,9 @@
 inblock statements
 ==========================
 {
+  _
   return x
-  aa
+  aa // like in lua, `return` can only appear at the end of a block
 }
 fn print(x) {
   return x
@@ -20,17 +21,19 @@ return what
 ---
 (source_file
  (block
+  (identifier)
   (return
    (ERROR
     (identifier))
-   (identifier)))
+   (identifier))
+  (comment))
  (function_declaration
   (function_name)
   (parameter_list
    (identifier))
   (function_body
-   (return
-    (identifier))))
+   (identifier)
+   (identifier)))
  (variable_declaration
   (identifier)
   (string

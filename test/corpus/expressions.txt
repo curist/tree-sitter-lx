@@ -129,7 +129,7 @@ b + { 1 }
 ========================
 lambda expression
 ========================
-fn(){}
+fn(){_}
 let foo = fn(a) {
   a b c
 }
@@ -142,7 +142,8 @@ print(add5(37))
 (source_file
  (lambda
   (parameter_list)
-  (function_body))
+  (function_body
+   (identifier)))
  (variable_declaration
   (identifier)
   (lambda

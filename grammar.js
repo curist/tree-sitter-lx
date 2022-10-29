@@ -50,7 +50,7 @@ module.exports = grammar({
       $.for,
     )),
 
-    block: $ => seq('{', repeat(choice($._expression, $._block_statement)), optional($.return), '}'),
+    block: $ => seq('{', repeat1(choice($._expression, $._block_statement)), optional($.return), '}'),
     return: $ => prec.right('unary', seq('return', optional($._expression))),
     _block_statement: $ => choice(
       $.defer,
