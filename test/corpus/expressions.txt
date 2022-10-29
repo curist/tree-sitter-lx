@@ -4,6 +4,10 @@ binary expressions
 a + 1
 a - b * c
 a / b + c
+a
+-b
+a-
+b
 ---
 (source_file
  (binary_expression
@@ -18,4 +22,10 @@ a / b + c
   (binary_expression
    (identifier)
    (identifier))
+  (identifier))
+ (binary_expression
+  (identifier)
+  (identifier))
+ (binary_expression
+  (identifier)
   (identifier)))
