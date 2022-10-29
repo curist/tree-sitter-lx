@@ -1,12 +1,21 @@
 ==========================
-if
+if then else
 ==========================
 if a {}
 if x {if x {}}
 if if x {}{}
 
 let cond = random() > 0.5
-let a = if cond { false }
+let a = if cond { false } else true 
+if cond {
+  1
+} else if cond2 {
+  // since else_clause expecting an expression
+  // we can just keep chaining `if` expression
+  2
+} else {
+  3
+}
 ---
 (source_file
  (if
@@ -41,4 +50,22 @@ let a = if cond { false }
     (cond
      (identifier))
     (then_clause
-     (boolean)))))
+     (boolean))
+    (else_clause
+     (boolean))))
+  (if
+   (cond
+    (identifier))
+   (then_clause
+    (number))
+   (else_clause
+    (if
+     (cond
+      (identifier))
+     (then_clause
+      (comment)
+      (comment)
+      (number))
+     (else_clause
+      (block
+       (number)))))))

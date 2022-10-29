@@ -64,11 +64,12 @@ module.exports = grammar({
     call: $ => prec.right(1, seq($._call, $.argument_list)),
     argument_list: $ => seq('(', commaSep($._expression), ')'),
 
-    if: $ => seq(
+    if: $ => prec.left(seq(
       'if',
       alias($._expression, $.cond),
       alias($.block, $.then_clause),
-    ),
+      optional(seq('else', alias($._expression, $.else_clause))),
+    )),
 
     unary_expression: $ => choice(
       ...['!', '-'].map((operator) =>
