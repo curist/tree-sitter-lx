@@ -154,3 +154,63 @@ while (while x < 10 {
   (comment)
   (comment)
   (comment))
+
+
+==========================
+for loop
+==========================
+let i
+for i = 0; i < 10; i = i + 1 {}
+
+for let x = 0; true; {}
+for ; ; { print(endless) }
+
+---
+(source_file
+ (variable_declaration
+  (identifier))
+ (for
+  (init
+   (assignment
+    (identifier)
+    (number)))
+  (cond
+   (binary_expression
+    (identifier)
+    (number)))
+  (iter
+   (assignment
+    (identifier)
+    (binary_expression
+     (identifier)
+     (number))))
+  (block))
+ (for
+  (init
+   (variable_declaration
+    (identifier)
+    (number)))
+  (cond
+   (boolean))
+  (block))
+ (for
+  (block
+   (call
+    (identifier)
+    (argument_list
+     (identifier))))))
+
+
+==========================
+for loop - nesting
+==========================
+for ;; for;;{} {}
+for ; for;;{} ;{}
+for for;;{} ;; {}
+for (for;;{}) ;; {}
+---
+(source_file
+ (for (iter (for (block))) (block))
+ (for (cond (for (block))) (block))
+ (for (init (for (block))) (block))
+ (for (init (for (block))) (block)))

@@ -1,7 +1,6 @@
 // TODO:
 // dot field access
 // array index access
-// loop statements
 // hashmap
 // break / continue
 module.exports = grammar({
@@ -23,13 +22,14 @@ module.exports = grammar({
       'binary_equality',
       'logical_and',
       'logical_or',
-      'assignment', 
+      'assignment',
     ],
   ],
 
   conflicts: $ => [
     [$.source_file, $.binary_expression],
     [$.block, $.binary_expression],
+    // [$.for, $._expression],
     // [$.source_file, $.call],
     // [$._expression, $.call],
     // [$.call, $.parenthesized_expression],
@@ -52,6 +52,7 @@ module.exports = grammar({
       $.block,
       $.if,
       $.while,
+      $.for,
     )),
 
     block: $ => seq('{', repeat(choice($._expression, $.defer)), optional($.return), '}'),
@@ -67,6 +68,15 @@ module.exports = grammar({
     parameter_list: $ => seq('(', commaSep($.identifier), ')'),
 
     while: $ => seq('while', alias($._expression, $.cond), $.block),
+    for: $ => prec.left(1, seq( // XXX: not sure why can't use general prec rule for this...
+      'for',
+      optional(alias($._expression, $.init)),
+      ';',
+      optional(alias($._expression, $.cond)),
+      ';',
+      optional(alias($._expression, $.iter)),
+      $.block,
+    )),
 
     assignment: $ => prec.left('assignment', seq($._lefthand_expression, '=', $._expression)),
     _lefthand_expression: $ => choice(

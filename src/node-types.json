@@ -32,6 +32,10 @@
           "named": true
         },
         {
+          "type": "for",
+          "named": true
+        },
+        {
           "type": "function_declaration",
           "named": true
         },
@@ -107,6 +111,10 @@
           "named": true
         },
         {
+          "type": "for",
+          "named": true
+        },
+        {
           "type": "function_declaration",
           "named": true
         },
@@ -179,6 +187,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "for",
           "named": true
         },
         {
@@ -262,6 +274,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "for",
             "named": true
           },
           {
@@ -397,6 +413,10 @@
             "named": true
           },
           {
+            "type": "for",
+            "named": true
+          },
+          {
             "type": "function_declaration",
             "named": true
           },
@@ -474,6 +494,10 @@
         },
         {
           "type": "defer",
+          "named": true
+        },
+        {
+          "type": "for",
           "named": true
         },
         {
@@ -565,6 +589,10 @@
           "named": true
         },
         {
+          "type": "for",
+          "named": true
+        },
+        {
           "type": "function_declaration",
           "named": true
         },
@@ -645,6 +673,10 @@
           "named": true
         },
         {
+          "type": "for",
+          "named": true
+        },
+        {
           "type": "function_declaration",
           "named": true
         },
@@ -717,6 +749,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "for",
           "named": true
         },
         {
@@ -795,6 +831,10 @@
           "named": true
         },
         {
+          "type": "for",
+          "named": true
+        },
+        {
           "type": "function_declaration",
           "named": true
         },
@@ -838,6 +878,33 @@
     }
   },
   {
+    "type": "for",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "cond",
+          "named": true
+        },
+        {
+          "type": "init",
+          "named": true
+        },
+        {
+          "type": "iter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "function_body",
     "named": true,
     "fields": {},
@@ -871,6 +938,10 @@
         },
         {
           "type": "defer",
+          "named": true
+        },
+        {
+          "type": "for",
           "named": true
         },
         {
@@ -967,6 +1038,164 @@
     }
   },
   {
+    "type": "init",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "for",
+          "named": true
+        },
+        {
+          "type": "function_declaration",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if",
+          "named": true
+        },
+        {
+          "type": "lambda",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "variable_declaration",
+          "named": true
+        },
+        {
+          "type": "while",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "iter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "for",
+          "named": true
+        },
+        {
+          "type": "function_declaration",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if",
+          "named": true
+        },
+        {
+          "type": "lambda",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "variable_declaration",
+          "named": true
+        },
+        {
+          "type": "while",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "lambda",
     "named": true,
     "fields": {},
@@ -1030,6 +1259,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "for",
           "named": true
         },
         {
@@ -1105,6 +1338,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "for",
           "named": true
         },
         {
@@ -1214,6 +1451,10 @@
           "named": true
         },
         {
+          "type": "for",
+          "named": true
+        },
+        {
           "type": "function_declaration",
           "named": true
         },
@@ -1315,6 +1556,10 @@
             "named": true
           },
           {
+            "type": "for",
+            "named": true
+          },
+          {
             "type": "function_declaration",
             "named": true
           },
@@ -1399,6 +1644,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "for",
           "named": true
         },
         {
@@ -1508,6 +1757,10 @@
     "named": false
   },
   {
+    "type": ";",
+    "named": false
+  },
+  {
     "type": "<",
     "named": false
   },
@@ -1561,6 +1814,10 @@
   },
   {
     "type": "fn",
+    "named": false
+  },
+  {
+    "type": "for",
     "named": false
   },
   {
