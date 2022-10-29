@@ -1,7 +1,7 @@
 ======================
 array access
 ======================
-// skip for now
+// TODO: XXX: skip for now
 // a[10]
 // a[0][1]
 ---
@@ -11,3 +11,34 @@ array access
  (comment))
 
 
+
+======================
+dot key access
+======================
+a.b
+a.a = 1
+a..b
+2 + a.b.c * 3
+---
+(source_file
+ (value_access
+  (identifier)
+  (identifier))
+ (assignment
+  (value_access
+   (identifier)
+   (identifier))
+  (number))
+ (value_access
+  (identifier)
+  (ERROR)
+  (identifier))
+ (binary_expression
+  (number)
+  (binary_expression
+   (value_access
+    (identifier)
+    (value_access
+     (identifier)
+     (identifier)))
+   (number))))

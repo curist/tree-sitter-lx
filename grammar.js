@@ -85,12 +85,19 @@ module.exports = grammar({
 
     assignment: $ => prec.left('assignment', seq($._lefthand_expression, '=', $._expression)),
     _lefthand_expression: $ => choice(
-      $.identifier,
+      $._call,
     ),
 
     _call: $ => prec.right(1, choice(
       $._primary,
+      $._value_access,
+    )),
+    _value_access: $ => choice(
+      $.value_access,
       $.call,
+    ),
+    value_access: $ => prec.right(1, choice(
+      seq($._call, repeat1(seq('.', $._call))),
     )),
     call: $ => prec.right(1, seq($._call, $.argument_list)),
     argument_list: $ => seq('(', commaSep($._expression), ')'),
