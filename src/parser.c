@@ -17,8 +17,8 @@
 #define PRODUCTION_ID_COUNT 1
 
 enum {
-  sym_shell_bang = 1,
-  sym_identifier = 2,
+  sym_identifier = 1,
+  sym_shell_bang = 2,
   sym_number = 3,
   sym_comment = 4,
   sym_source_file = 5,
@@ -29,8 +29,8 @@ enum {
 
 static const char * const ts_symbol_names[] = {
   [ts_builtin_sym_end] = "end",
-  [sym_shell_bang] = "shell_bang",
   [sym_identifier] = "identifier",
+  [sym_shell_bang] = "shell_bang",
   [sym_number] = "number",
   [sym_comment] = "comment",
   [sym_source_file] = "source_file",
@@ -41,8 +41,8 @@ static const char * const ts_symbol_names[] = {
 
 static const TSSymbol ts_symbol_map[] = {
   [ts_builtin_sym_end] = ts_builtin_sym_end,
-  [sym_shell_bang] = sym_shell_bang,
   [sym_identifier] = sym_identifier,
+  [sym_shell_bang] = sym_shell_bang,
   [sym_number] = sym_number,
   [sym_comment] = sym_comment,
   [sym_source_file] = sym_source_file,
@@ -56,11 +56,11 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = false,
     .named = true,
   },
-  [sym_shell_bang] = {
+  [sym_identifier] = {
     .visible = true,
     .named = true,
   },
-  [sym_identifier] = {
+  [sym_shell_bang] = {
     .visible = true,
     .named = true,
   },
@@ -172,6 +172,18 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
   }
 }
 
+static bool ts_lex_keywords(TSLexer *lexer, TSStateId state) {
+  START_LEXER();
+  eof = lexer->eof(lexer);
+  switch (state) {
+    case 0:
+      ACCEPT_TOKEN(ts_builtin_sym_end);
+      END_STATE();
+    default:
+      return false;
+  }
+}
+
 static const TSLexMode ts_lex_modes[STATE_COUNT] = {
   [0] = {.lex_state = 0},
   [1] = {.lex_state = 0},
@@ -185,8 +197,8 @@ static const TSLexMode ts_lex_modes[STATE_COUNT] = {
 static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   [0] = {
     [ts_builtin_sym_end] = ACTIONS(1),
-    [sym_shell_bang] = ACTIONS(1),
     [sym_identifier] = ACTIONS(1),
+    [sym_shell_bang] = ACTIONS(1),
     [sym_number] = ACTIONS(1),
     [sym_comment] = ACTIONS(3),
   },
@@ -196,9 +208,9 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym__primary] = STATE(3),
     [aux_sym_source_file_repeat1] = STATE(3),
     [ts_builtin_sym_end] = ACTIONS(5),
-    [sym_shell_bang] = ACTIONS(7),
-    [sym_identifier] = ACTIONS(9),
-    [sym_number] = ACTIONS(9),
+    [sym_identifier] = ACTIONS(7),
+    [sym_shell_bang] = ACTIONS(9),
+    [sym_number] = ACTIONS(7),
     [sym_comment] = ACTIONS(3),
   },
   [2] = {
@@ -256,8 +268,8 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [1] = {.entry = {.count = 1, .reusable = false}}, RECOVER(),
   [3] = {.entry = {.count = 1, .reusable = true}}, SHIFT_EXTRA(),
   [5] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_source_file, 0),
-  [7] = {.entry = {.count = 1, .reusable = true}}, SHIFT(2),
-  [9] = {.entry = {.count = 1, .reusable = true}}, SHIFT(3),
+  [7] = {.entry = {.count = 1, .reusable = true}}, SHIFT(3),
+  [9] = {.entry = {.count = 1, .reusable = true}}, SHIFT(2),
   [11] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_source_file, 1),
   [13] = {.entry = {.count = 1, .reusable = true}}, SHIFT(4),
   [15] = {.entry = {.count = 1, .reusable = true}}, SHIFT(5),
@@ -297,6 +309,8 @@ extern const TSLanguage *tree_sitter_lx(void) {
     .alias_sequences = &ts_alias_sequences[0][0],
     .lex_modes = ts_lex_modes,
     .lex_fn = ts_lex,
+    .keyword_lex_fn = ts_lex_keywords,
+    .keyword_capture_token = sym_identifier,
     .primary_state_ids = ts_primary_state_ids,
   };
   return &language;

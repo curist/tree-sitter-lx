@@ -38,5 +38,17 @@ number - float
  (number))
 
 
+==========================
+identifier
+==========================
+asdf
+_foo
+bar11
+0xx
+---
+(source_file
+ (identifier)
+ (identifier)
+ (identifier))
 
 

@@ -4,6 +4,8 @@ const _numeral = () =>
 module.exports = grammar({
   name: 'lx',
 
+  word: $ => $.identifier,
+
   extras: $ => [
     $.comment,
     /[\s\n\t]/,

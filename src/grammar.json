@@ -1,5 +1,6 @@
 {
   "name": "lx",
+  "word": "identifier",
   "rules": {
     "source_file": {
       "type": "SEQ",
