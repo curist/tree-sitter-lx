@@ -3,14 +3,33 @@ array
 ==================
 []
 [a, b]
-[12 3 b]
 ---
 (source_file
  (array)
  (array
   (identifier)
+  (identifier)))
+
+
+===========================
+array with more expressions
+===========================
+[a + b, c]
+[a -b]
+[a -,b]
+---
+(source_file
+ (array
+  (binary_expression
+   (identifier)
+   (identifier))
   (identifier))
  (array
-  (number)
-  (number)
-  (identifier)))
+  (binary_expression
+   (identifier)
+   (identifier)))
+ (array
+  (binary_expression
+   (identifier)
+   (ERROR)
+   (identifier))))

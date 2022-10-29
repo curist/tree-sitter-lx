@@ -20,17 +20,38 @@ module.exports = grammar({
     ],
   ],
 
+  conflicts: $ => [
+    [
+      $.binary_expression,
+      $.source_file,
+    ],
+    // [
+    //   $.binary_expression,
+    //   $.array,
+    // ],
+  ],
+
   rules: {
-    source_file: $ => seq(
+    source_file: $ => prec.right(seq(
       optional($.shell_bang),
       repeat($._expression),
-    ),
+    )),
     shell_bang: _ => token.immediate(/#!.*/),
     _expression: $ => seq(choice(
+      $.unary_expression,
       $.binary_expression,
       $.array,
       $._primary,
     )),
+
+    unary_expression: $ => choice(
+      ...['!', '-'].map((operator) =>
+        prec.left('unary', seq(
+          field('operator', operator),
+          field('right', $._expression),
+        )),
+      ),
+    ),
 
     binary_expression: $ => choice(
       ...[
@@ -53,7 +74,8 @@ module.exports = grammar({
       )))
     ),
 
-    array: $ => seq('[', repeat(seq($._expression, optional(','))), ']'),
+    // array: $ => seq('[', repeat(seq($._expression, optional(','))), ']'),
+    array: $ => seq('[', commaSep($._expression), ']'),
 
     _primary: $ => choice(
       $.identifier,
