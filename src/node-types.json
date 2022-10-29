@@ -1,5 +1,10 @@
 [
   {
+    "type": "boolean",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "source_file",
     "named": true,
     "fields": {},
@@ -8,7 +13,15 @@
       "required": false,
       "types": [
         {
+          "type": "boolean",
+          "named": true
+        },
+        {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "nil",
           "named": true
         },
         {
@@ -58,7 +71,15 @@
     "named": true
   },
   {
+    "type": "false",
+    "named": false
+  },
+  {
     "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "nil",
     "named": true
   },
   {
@@ -72,5 +93,9 @@
   {
     "type": "string_fragment",
     "named": true
+  },
+  {
+    "type": "true",
+    "named": false
   }
 ]

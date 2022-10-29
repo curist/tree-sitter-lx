@@ -76,3 +76,24 @@ string
   (escape_sequence)
   (string_fragment)))
 
+==========================
+boolean
+==========================
+true false
+truefalse
+---
+(source_file
+ (boolean)
+ (boolean)
+ (identifier))
+
+==========================
+nil
+==========================
+nil 1nil xnil
+---
+(source_file
+ (nil)
+ (number)
+ (nil)
+ (identifier))

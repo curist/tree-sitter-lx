@@ -24,6 +24,8 @@ module.exports = grammar({
       $.identifier,
       $.number,
       $.string,
+      $.boolean,
+      $.nil,
     ),
     identifier: _ => /[a-zA-Z_][a-zA-Z0-9_]*/,
     number: _ => token(seq(optional('-'), _numeral())),
@@ -40,6 +42,8 @@ module.exports = grammar({
       '\\',
       choice('n', 'r', 't', '\\', '"'),
     )),
+    boolean: _ => choice('true', 'false'),
+    nil: _ => 'nil',
     comment: _ => token(seq('//', /.*/)),
   }
 })
