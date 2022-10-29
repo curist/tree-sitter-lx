@@ -162,19 +162,7 @@ module.exports = grammar({
         seq(repeat1(/[0-9]/), optional(seq('.', repeat1(/[0-9]/))))
       return token(seq(optional('-'), _numeral()))
     },
-    string: $ => seq(
-      '"',
-      repeat(choice(
-        alias($.unescaped_double_string_fragment, $.string_fragment),
-        $.escape_sequence,
-      )),
-      '"',
-    ),
-    unescaped_double_string_fragment: _ => token.immediate(prec(1, /[^"\\]+/)),
-    escape_sequence: _ => token.immediate(seq(
-      '\\',
-      choice('n', 'r', 't', '\\', '"'),
-    )),
+    string: _ => seq('"', repeat(choice(/[^"\\]/, /\\./)), '"'),
     boolean: _ => choice('true', 'false'),
     nil: _ => 'nil',
     lambda: $ => seq('fn', $.parameter_list, alias($.block, $.function_body)),

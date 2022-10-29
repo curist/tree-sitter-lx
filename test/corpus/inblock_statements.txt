@@ -40,8 +40,7 @@ return what
       (number))))))
  (variable_declaration
   (identifier)
-  (string
-   (string_fragment)))
+  (string))
  (block
   (variable_declaration
    (identifier)

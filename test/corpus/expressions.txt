@@ -12,8 +12,7 @@ let foo = import a + b * c
  (variable_declaration
   (identifier)
   (import
-   (string
-    (string_fragment))))
+   (string)))
  (import
   (binary_expression
    (identifier)
