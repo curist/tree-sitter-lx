@@ -1062,7 +1062,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "parenthesized_expression"
+          "name": "_parenthesized_expression"
         }
       ]
     },
@@ -1225,23 +1225,6 @@
       "type": "STRING",
       "value": "nil"
     },
-    "parenthesized_expression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_expression"
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        }
-      ]
-    },
     "lambda": {
       "type": "SEQ",
       "members": [
@@ -1261,6 +1244,23 @@
           },
           "named": true,
           "value": "function_body"
+        }
+      ]
+    },
+    "_parenthesized_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },

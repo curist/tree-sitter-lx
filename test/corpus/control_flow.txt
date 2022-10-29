@@ -123,26 +123,25 @@ while (while x < 10 {
   (number))
  (while
   (cond
-   (parenthesized_expression
-    (while
-     (cond
+   (while
+    (cond
+     (binary_expression
+      (identifier)
+      (number)))
+    (block
+     (assignment
+      (identifier)
       (binary_expression
        (identifier)
        (number)))
-     (block
-      (assignment
-       (identifier)
-       (binary_expression
-        (identifier)
-        (number)))
-      (assignment
-       (identifier)
-       (binary_expression
-        (identifier)
-        (identifier)))
+     (assignment
+      (identifier)
       (binary_expression
        (identifier)
-       (number))))))
+       (identifier)))
+     (binary_expression
+      (identifier)
+      (number)))))
   (block
    (defer
     (assignment

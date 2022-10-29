@@ -38,10 +38,9 @@ parenthesized expression
 ---
 (source_file
  (binary_expression
-  (parenthesized_expression
-   (binary_expression
-    (identifier)
-    (identifier)))
+  (binary_expression
+   (identifier)
+   (identifier))
   (identifier)))
 
 ========================
@@ -53,8 +52,7 @@ a + (b)(c)
  (binary_expression
   (identifier)
   (call
-   (parenthesized_expression
-    (identifier))
+   (identifier)
    (argument_list
     (identifier)))))
 
