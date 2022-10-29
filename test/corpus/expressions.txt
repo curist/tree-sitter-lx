@@ -3,6 +3,7 @@ import statement
 ======================
 import a
 let x = import "foo"
+import a + b
 ---
 (source_file
  (import
@@ -11,7 +12,11 @@ let x = import "foo"
   (identifier)
   (import
    (string
-    (string_fragment)))))
+    (string_fragment))))
+ (import
+  (binary_expression
+   (identifier)
+   (identifier))))
 
 ======================
 binary expressions

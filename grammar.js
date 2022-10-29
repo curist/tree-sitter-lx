@@ -15,6 +15,7 @@ module.exports = grammar({
       'logical_and',
       'logical_or',
       'assignment',
+      'unary_statement',
     ],
   ],
 
@@ -45,19 +46,19 @@ module.exports = grammar({
       $.for,
     )),
 
-    import: $ => prec.left('unary', seq('import', $._expression)),
+    import: $ => prec('unary_statement', seq('import', $._expression)),
 
     block: $ => choice(
       seq('{', repeat1(choice($._expression, $._block_statement)), optional($.return), '}'),
       seq('{', $.return, '}'),
     ),
-    return: $ => prec.right('unary', seq('return', optional($._expression))),
+    return: $ => prec('unary_statement', seq('return', optional($._expression))),
     _block_statement: $ => choice(
       $.defer,
       $.break,
       $.continue,
     ),
-    defer: $ => prec.left('unary', seq('defer', $._expression)),
+    defer: $ => prec('unary_statement', seq('defer', $._expression)),
     break: _ => 'break',
     continue: _ => 'continue',
 

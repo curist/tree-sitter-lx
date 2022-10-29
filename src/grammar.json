@@ -104,8 +104,8 @@
       ]
     },
     "import": {
-      "type": "PREC_LEFT",
-      "value": "unary",
+      "type": "PREC",
+      "value": "unary_statement",
       "content": {
         "type": "SEQ",
         "members": [
@@ -184,8 +184,8 @@
       ]
     },
     "return": {
-      "type": "PREC_RIGHT",
-      "value": "unary",
+      "type": "PREC",
+      "value": "unary_statement",
       "content": {
         "type": "SEQ",
         "members": [
@@ -226,8 +226,8 @@
       ]
     },
     "defer": {
-      "type": "PREC_LEFT",
-      "value": "unary",
+      "type": "PREC",
+      "value": "unary_statement",
       "content": {
         "type": "SEQ",
         "members": [
@@ -1720,6 +1720,10 @@
       {
         "type": "STRING",
         "value": "assignment"
+      },
+      {
+        "type": "STRING",
+        "value": "unary_statement"
       }
     ]
   ],
