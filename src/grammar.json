@@ -532,7 +532,7 @@
       ]
     },
     "value_access": {
-      "type": "PREC_RIGHT",
+      "type": "PREC_LEFT",
       "value": 1,
       "content": {
         "type": "CHOICE",
@@ -545,20 +545,33 @@
                 "name": "_call"
               },
               {
-                "type": "REPEAT1",
-                "content": {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": "."
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "_call"
-                    }
-                  ]
-                }
+                "type": "STRING",
+                "value": "."
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_call"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_call"
+              },
+              {
+                "type": "STRING",
+                "value": "["
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_expression"
+              },
+              {
+                "type": "STRING",
+                "value": "]"
               }
             ]
           }

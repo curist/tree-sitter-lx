@@ -1,44 +1,136 @@
 ======================
-array access
+field access
 ======================
-// TODO: XXX: skip for now
-// a[10]
-// a[0][1]
----
-(source_file
- (comment)
- (comment)
- (comment))
+// index 
+a[10]
+a[0][1]
+arr[1][2] = 3
 
-
-
-======================
-dot key access
-======================
+//key
 a.b
 a.a = 1
 a..b
 2 + a.b.c * 3
+
 ---
 (source_file
+ (comment)
  (value_access
-  (identifier)
-  (identifier))
+   (identifier)
+   (number))
+ (value_access
+   (value_access
+     (identifier)
+     (number))
+   (number))
  (assignment
-  (value_access
+   (value_access
+     (value_access
+       (identifier)
+       (number))
+     (number))
+   (number))
+ (comment)
+ (value_access
    (identifier)
    (identifier))
-  (number))
- (value_access
-  (identifier)
-  (ERROR)
-  (identifier))
- (binary_expression
-  (number)
-  (binary_expression
+ (assignment
    (value_access
-    (identifier)
+     (identifier)
+     (identifier))
+   (number))
+ (value_access
+   (identifier)
+   (ERROR)
+   (identifier))
+ (binary_expression
+   (number)
+   (binary_expression
+     (value_access
+       (value_access
+         (identifier)
+         (identifier))
+       (identifier))
+     (number))))
+
+
+==========================
+field access - prec
+==========================
+a = x.y.z.a
+a = ((x.y).z).a
+a = x[1][2][3]
+a = ( ( x[1] ) [2] ) [3]
+---
+(source_file
+ (assignment
+  (identifier)
+  (value_access
+   (value_access
     (value_access
      (identifier)
-     (identifier)))
-   (number))))
+     (identifier))
+    (identifier))
+   (identifier)))
+ (assignment
+  (identifier)
+  (value_access
+   (value_access
+    (value_access
+     (identifier)
+     (identifier))
+    (identifier))
+   (identifier)))
+ (assignment
+  (identifier)
+  (value_access
+   (value_access
+    (value_access
+     (identifier)
+     (number))
+    (number))
+   (number)))
+  (assignment
+   (identifier)
+   (value_access
+    (value_access
+     (value_access
+      (identifier)
+      (number))
+     (number))
+    (number))))
+
+======================
+field access - mixed
+======================
+a=x[1].y[z][1].baz
+a=(((x[1]).y)[z][1]).baz
+---
+(source_file
+ (assignment
+  (identifier)
+  (value_access
+   (value_access
+    (value_access
+     (value_access
+      (value_access
+       (identifier)
+       (number))
+      (identifier))
+     (identifier))
+    (number))
+   (identifier)))
+ (assignment
+  (identifier)
+  (value_access
+   (value_access
+    (value_access
+     (value_access
+      (value_access
+       (identifier)
+       (number))
+      (identifier))
+     (identifier))
+    (number))
+   (identifier))))
+

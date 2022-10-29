@@ -1,6 +1,3 @@
-// TODO:
-// dot field access
-// array index access
 module.exports = grammar({
   name: 'lx',
 
@@ -96,8 +93,9 @@ module.exports = grammar({
       $.value_access,
       $.call,
     ),
-    value_access: $ => prec.right(1, choice(
-      seq($._call, repeat1(seq('.', $._call))),
+    value_access: $ => prec.left(1, choice(
+      seq($._call, '.', $._call),
+      seq($._call, '[', $._expression, ']'),
     )),
     call: $ => prec.right(1, seq($._call, $.argument_list)),
     argument_list: $ => seq('(', commaSep($._expression), ')'),

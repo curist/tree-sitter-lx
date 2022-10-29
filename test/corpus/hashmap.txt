@@ -10,6 +10,9 @@ a = {
 {_:1,} // can have trailing comma
 {,} // can't have comma if no keyvalue
 {[1 + 2]: 3, [x]:x} // can use expression as key
+{
+  // comment should not effect if a block is empty
+}
 ---
 (source_file
  (hashmap)
@@ -45,4 +48,6 @@ a = {
    (keyvalue
      (identifier)
      (identifier)))
- (comment))
+ (comment)
+ (hashmap
+  (comment)))
