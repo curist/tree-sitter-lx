@@ -1,7 +1,6 @@
 // TODO:
 // dot field access
 // array index access
-// hashmap
 module.exports = grammar({
   name: 'lx',
 
@@ -44,6 +43,7 @@ module.exports = grammar({
       $.binary_expression,
       $._call,
       $.array,
+      $.hashmap,
       $.block,
       $.if,
       $.while,
@@ -134,6 +134,15 @@ module.exports = grammar({
 
     // array: $ => seq('[', repeat(seq($._expression, optional(','))), ']'),
     array: $ => seq('[', commaSep($._expression), ']'),
+
+    hashmap: $ => seq('{',
+      optional(seq($.keyvalue, repeat(seq(',', $.keyvalue)), optional(','))),
+    '}'),
+    keyvalue: $ => seq(field('key', $._hashmap_key), ':', field('value', $._expression)),
+    _hashmap_key: $ => choice(
+      $.identifier,
+      seq('[', $._expression, ']'),
+    ),
 
     _primary: $ => choice(
       $.identifier,

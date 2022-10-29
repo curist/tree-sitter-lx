@@ -1,0 +1,48 @@
+==================
+hashmap
+==================
+{} // empty brace pair = empty hashmap
+let a = {}
+a = {
+  a: 1,
+  b: a + b
+}
+{_:1,} // can have trailing comma
+{,} // can't have comma if no keyvalue
+{[1 + 2]: 3, [x]:x} // can use expression as key
+---
+(source_file
+ (hashmap)
+ (comment)
+ (variable_declaration
+   (identifier)
+   (hashmap))
+ (assignment
+   (identifier)
+   (hashmap
+     (keyvalue
+       (identifier)
+       (number))
+     (keyvalue
+       (identifier)
+       (binary_expression
+         (identifier)
+         (identifier)))))
+ (hashmap
+   (keyvalue
+     (identifier)
+     (number)))
+ (comment)
+ (hashmap
+   (ERROR))
+ (comment)
+ (hashmap
+   (keyvalue
+     (binary_expression
+       (number)
+       (number))
+     (number))
+   (keyvalue
+     (identifier)
+     (identifier)))
+ (comment))
