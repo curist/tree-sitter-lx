@@ -482,20 +482,33 @@
             ]
           },
           {
-            "type": "STRING",
-            "value": ";"
-          },
-          {
             "type": "CHOICE",
             "members": [
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_expression"
-                },
-                "named": true,
-                "value": "iter"
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ";"
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "_expression"
+                        },
+                        "named": true,
+                        "value": "iter"
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  }
+                ]
               },
               {
                 "type": "BLANK"

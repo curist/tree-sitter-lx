@@ -250,6 +250,23 @@ for (for;;{_}) ;; {_}
   (block
    (identifier))))
 
+==========================
+for loop - shortened
+==========================
+for x = x.parent; x {_}
+---
+(source_file
+ (for
+  (init
+   (assignment
+    (identifier)
+    (value_access
+     (identifier)
+     (identifier))))
+  (cond
+   (identifier))
+  (block
+   (identifier))))
 
 ==========================
 break / continue

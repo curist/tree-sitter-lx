@@ -76,8 +76,7 @@ module.exports = grammar({
       optional(alias($._expression, $.init)),
       ';',
       optional(alias($._expression, $.cond)),
-      ';',
-      optional(alias($._expression, $.iter)),
+      optional(seq(';', optional(alias($._expression, $.iter)))),
       $.block,
     )),
 
