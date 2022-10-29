@@ -42,10 +42,12 @@ module.exports = grammar({
       $._call,
       $.array,
       $.block,
+      $.if,
     )),
 
-    block: $ => seq('{', repeat($._expression), optional($.return), '}'),
+    block: $ => seq('{', repeat(choice($._expression, $.defer)), optional($.return), '}'),
     return: $ => prec.right('unary', seq('return', optional($._expression))),
+    defer: $ => prec.left('unary', seq('defer', $._expression)),
 
     _declaration: $ => choice(
       $.variable_declaration,
@@ -61,6 +63,12 @@ module.exports = grammar({
     )),
     call: $ => prec.right(1, seq($._call, $.argument_list)),
     argument_list: $ => seq('(', commaSep($._expression), ')'),
+
+    if: $ => seq(
+      'if',
+      alias($._expression, $.cond),
+      alias($.block, $.then_clause),
+    ),
 
     unary_expression: $ => choice(
       ...['!', '-'].map((operator) =>

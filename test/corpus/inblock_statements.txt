@@ -18,5 +18,60 @@ print(a)
 
 return what
 ---
-()
+(source_file
+ (block
+  (return
+   (ERROR
+    (identifier))
+   (identifier)))
+ (function_declaration
+  (function_name)
+  (parameter_list
+   (identifier))
+  (function_body
+   (return
+    (identifier))))
+ (variable_declaration
+  (identifier)
+  (string
+   (string_fragment)))
+ (block
+  (variable_declaration
+   (identifier)
+   (number))
+  (call
+   (identifier)
+   (argument_list
+    (identifier))))
+  (call
+   (identifier)
+   (argument_list
+    (identifier)))
+  (return
+   (identifier)))
 
+==========================
+inblock statements - defer
+==========================
+defer x
+// defer is block level statment, so it's treated as identifier here,
+
+{
+  defer x
+  defer return foo
+  // return is block level statment, so it's treated as identifier here,
+  // so in above line, `foo` is a trailing identifier
+}
+---
+(source_file
+ (identifier)
+ (identifier)
+ (comment)
+ (block
+  (defer
+   (identifier))
+  (defer
+   (identifier))
+  (identifier)
+  (comment)
+  (comment)))

@@ -74,6 +74,10 @@
             {
               "type": "SYMBOL",
               "name": "block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "if"
             }
           ]
         }
@@ -89,8 +93,17 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "SYMBOL",
-            "name": "_expression"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_expression"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "defer"
+              }
+            ]
           }
         },
         {
@@ -132,6 +145,23 @@
                 "type": "BLANK"
               }
             ]
+          }
+        ]
+      }
+    },
+    "defer": {
+      "type": "PREC_LEFT",
+      "value": "unary",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "defer"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
           }
         ]
       }
@@ -369,6 +399,33 @@
         {
           "type": "STRING",
           "value": ")"
+        }
+      ]
+    },
+    "if": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "if"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
+          },
+          "named": true,
+          "value": "cond"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "block"
+          },
+          "named": true,
+          "value": "then_clause"
         }
       ]
     },
