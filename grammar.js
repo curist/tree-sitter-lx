@@ -17,6 +17,7 @@ module.exports = grammar({
       'binary_equality',
       'logical_and',
       'logical_or',
+      'assignment', 
     ],
   ],
 
@@ -37,6 +38,7 @@ module.exports = grammar({
     shell_bang: _ => token.immediate(/#!.*/),
     _expression: $ => seq(choice(
       $._declaration,
+      $.assignment,
       $.unary_expression,
       $.binary_expression,
       $._call,
@@ -53,9 +55,14 @@ module.exports = grammar({
       $.variable_declaration,
       $.function_declaration,
     ),
-    variable_declaration: $ => prec.right(seq('let', field('name', $.identifier), optional(seq('=', $._expression)))),
+    variable_declaration: $ => prec.left('assignment', seq('let', field('name', $.identifier), optional(seq('=', $._expression)))),
     function_declaration: $ => seq('fn', alias($.identifier, $.function_name), $.parameter_list, alias($.block, $.function_body)),
     parameter_list: $ => seq('(', commaSep($.identifier), ')'),
+
+    assignment: $ => prec.left('assignment', seq($._lefthand_expression, '=', $._expression)),
+    _lefthand_expression: $ => choice(
+      $.identifier,
+    ),
 
     _call: $ => prec.right(1, choice(
       $._primary,

@@ -45,3 +45,26 @@ fn x(a,b) {
     (identifier)
     (argument_list
      (identifier))))))
+
+
+======================
+variable assignment
+======================
+let a = 1
+a = a + 1
+a = b = 9
+---
+(source_file
+ (variable_declaration
+  (identifier)
+  (number))
+ (assignment
+  (identifier)
+  (binary_expression
+   (identifier)
+   (number)))
+ (assignment
+  (identifier)
+  (assignment
+   (identifier)
+   (number))))
