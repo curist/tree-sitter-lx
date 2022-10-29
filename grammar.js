@@ -2,7 +2,6 @@
 // dot field access
 // array index access
 // hashmap
-// break / continue
 module.exports = grammar({
   name: 'lx',
 
@@ -55,9 +54,16 @@ module.exports = grammar({
       $.for,
     )),
 
-    block: $ => seq('{', repeat(choice($._expression, $.defer)), optional($.return), '}'),
+    block: $ => seq('{', repeat(choice($._expression, $._block_statement)), optional($.return), '}'),
     return: $ => prec.right('unary', seq('return', optional($._expression))),
+    _block_statement: $ => choice(
+      $.defer,
+      $.break,
+      $.continue,
+    ),
     defer: $ => prec.left('unary', seq('defer', $._expression)),
+    break: _ => 'break',
+    continue: _ => 'continue',
 
     _declaration: $ => choice(
       $.variable_declaration,

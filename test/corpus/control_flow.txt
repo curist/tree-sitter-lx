@@ -214,3 +214,31 @@ for (for;;{}) ;; {}
  (for (cond (for (block))) (block))
  (for (init (for (block))) (block))
  (for (init (for (block))) (block)))
+
+
+==========================
+break / continue
+==========================
+break // out of block, just an identifier (XXX: how do we deal with reserved keywords?)
+{ break continue }
+while x { if _ { break } print(cont) }
+---
+(source_file
+ (identifier)
+ (comment)
+ (block
+  (break)
+  (continue))
+ (while
+  (cond
+   (identifier))
+  (block
+   (if
+    (cond
+     (identifier))
+    (then_clause
+     (break)))
+   (call
+    (identifier)
+    (argument_list
+     (identifier))))))

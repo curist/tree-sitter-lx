@@ -113,7 +113,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "defer"
+                "name": "_block_statement"
               }
             ]
           }
@@ -161,6 +161,23 @@
         ]
       }
     },
+    "_block_statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "defer"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "break"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "continue"
+        }
+      ]
+    },
     "defer": {
       "type": "PREC_LEFT",
       "value": "unary",
@@ -177,6 +194,14 @@
           }
         ]
       }
+    },
+    "break": {
+      "type": "STRING",
+      "value": "break"
+    },
+    "continue": {
+      "type": "STRING",
+      "value": "continue"
     },
     "_declaration": {
       "type": "CHOICE",

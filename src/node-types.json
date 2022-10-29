@@ -489,7 +489,15 @@
           "named": true
         },
         {
+          "type": "break",
+          "named": true
+        },
+        {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "continue",
           "named": true
         },
         {
@@ -933,7 +941,15 @@
           "named": true
         },
         {
+          "type": "break",
+          "named": true
+        },
+        {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "continue",
           "named": true
         },
         {
@@ -1443,7 +1459,15 @@
           "named": true
         },
         {
+          "type": "break",
+          "named": true
+        },
+        {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "continue",
           "named": true
         },
         {
@@ -1795,6 +1819,14 @@
   {
     "type": "and",
     "named": false
+  },
+  {
+    "type": "break",
+    "named": true
+  },
+  {
+    "type": "continue",
+    "named": true
   },
   {
     "type": "defer",
