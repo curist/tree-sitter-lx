@@ -21,31 +21,29 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
-    [
-      $.binary_expression,
-      $.source_file,
-    ],
-    // [
-    //   $.binary_expression,
-    //   $.array,
-    // ],
+    [$.source_file, $.binary_expression],
+    [$.source_file, $.call],
+    [$.call, $.parenthesized_expression],
   ],
 
   rules: {
-    source_file: $ => prec.right(seq(
+    source_file: $ => seq(
       optional($.shell_bang),
       repeat($._expression),
-    )),
+    ),
     shell_bang: _ => token.immediate(/#!.*/),
     _expression: $ => seq(choice(
+      $.call,
+      $.parenthesized_expression,
       $.unary_expression,
       $.binary_expression,
       $.array,
       $._primary,
-      $.parenthesized_expression,
     )),
 
     parenthesized_expression: $ => seq('(', $._expression, ')'),
+    call: $ => seq($._expression, '(', commaSep($._expression), ')'),
+
 
     unary_expression: $ => choice(
       ...['!', '-'].map((operator) =>
