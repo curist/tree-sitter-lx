@@ -1,25 +1,21 @@
-const SHEBANG = /#!.*/
-const WHITESPACE = /[\s\n\t]/
-
 module.exports = grammar({
   name: 'lx',
 
   extras: $ => [
     $.comment,
-    WHITESPACE,
+    /[\s\n\t]/,
   ],
 
   rules: {
-    // TODO: add the actual grammar rules
     source_file: $ => seq(
-      optional($.shebang),
+      optional($.shell_bang),
       repeat($.expression),
     ),
-    shebang: $ => SHEBANG,
+    shell_bang: _ => /#!.*/,
     expression: $ => choice(
       $.hello,
     ),
     hello: $ => 'hello',
-    comment: $ => token(seq('//', /.*/)),
+    comment: _ => token(seq('//', /.*/)),
   }
 })
