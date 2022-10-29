@@ -58,6 +58,7 @@ a + (b)(c)
    (argument_list
     (identifier)))))
 
+
 ========================
 more expression calling
 ========================
@@ -85,3 +86,43 @@ a + b() * c
     (identifier)
     (argument_list))
    (identifier))))
+
+
+========================
+blocks
+========================
+{ a 1 }
+let a = {
+  let b = 1
+  let c = 2
+  b + c
+}
+b + { 1 }
+{ 3 * 4 } + 1
+---
+(source_file
+ (block
+  (identifier)
+  (number))
+ (variable_declaration
+  (identifier)
+  (block
+   (variable_declaration
+    (identifier)
+    (number))
+   (variable_declaration
+    (identifier)
+    (number))
+   (binary_expression
+    (identifier)
+    (identifier))))
+ (binary_expression
+  (identifier)
+  (block
+   (number)))
+ (binary_expression
+  (block
+   (binary_expression
+    (number)
+    (number)))
+  (number)))

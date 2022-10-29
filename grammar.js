@@ -22,6 +22,7 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.source_file, $.binary_expression],
+    [$.block, $.binary_expression],
     // [$.source_file, $.call],
     // [$._expression, $.call],
     // [$.call, $.parenthesized_expression],
@@ -39,13 +40,18 @@ module.exports = grammar({
       $.binary_expression,
       $._call,
       $.array,
+      $.block,
     )),
 
+    block: $ => seq('{', repeat($._expression), '}'),
+
     _declaration: $ => choice(
-      // TODO: fn decl
       $.variable_declaration,
+      $.function_declaration,
     ),
-    variable_declaration: $ => prec.right(seq('let', $.identifier, optional(seq('=', $._expression)))),
+    variable_declaration: $ => prec.right(seq('let', field('name', $.identifier), optional(seq('=', $._expression)))),
+    function_declaration: $ => seq('fn', field('name', $.identifier), $.parameter_list),
+    parameter_list: $ => seq('(', commaSep($.identifier), ')'),
 
     _call: $ => prec.right(1, choice(
       $._primary,
