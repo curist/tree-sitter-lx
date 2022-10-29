@@ -32,6 +32,7 @@ module.exports = grammar({
     source_file: $ => seq(
       optional($.shell_bang),
       repeat($._expression),
+      optional($.return),
     ),
     shell_bang: _ => token.immediate(/#!.*/),
     _expression: $ => seq(choice(
@@ -43,7 +44,8 @@ module.exports = grammar({
       $.block,
     )),
 
-    block: $ => seq('{', repeat($._expression), '}'),
+    block: $ => seq('{', repeat($._expression), optional($.return), '}'),
+    return: $ => prec.right('unary', seq('return', optional($._expression))),
 
     _declaration: $ => choice(
       $.variable_declaration,
@@ -62,7 +64,7 @@ module.exports = grammar({
 
     unary_expression: $ => choice(
       ...['!', '-'].map((operator) =>
-        prec.left('unary', seq(
+        prec.right('unary', seq(
           field('operator', operator),
           field('right', $._expression),
         )),

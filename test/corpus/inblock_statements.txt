@@ -1,0 +1,22 @@
+==========================
+inblock statements
+==========================
+{
+  return x
+  aa
+}
+fn print(x) {
+  return x
+}
+
+let a = "x"
+{
+  let a = 1
+  print(a)
+}
+print(a)
+
+return what
+---
+()
+
