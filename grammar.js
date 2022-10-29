@@ -16,7 +16,7 @@ module.exports = grammar({
       optional($.shell_bang),
       repeat($._expression),
     ),
-    shell_bang: _ => /#!.*/,
+    shell_bang: _ => token.immediate(/#!.*/),
     _expression: $ => choice(
       $._primary,
     ),

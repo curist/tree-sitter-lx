@@ -1,7 +1,6 @@
 ==================
-Dummy program text
+shellbang
 ==================
-
 #!/usr/bin/env lx
 hello
 

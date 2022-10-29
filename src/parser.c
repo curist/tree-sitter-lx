@@ -229,7 +229,6 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
     case 7:
       if (eof) ADVANCE(8);
       if (lookahead == '"') ADVANCE(13);
-      if (lookahead == '#') ADVANCE(1);
       if (lookahead == '-') ADVANCE(5);
       if (lookahead == '/') ADVANCE(3);
       if (lookahead == '\t' ||

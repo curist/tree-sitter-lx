@@ -27,8 +27,11 @@
       ]
     },
     "shell_bang": {
-      "type": "PATTERN",
-      "value": "#!.*"
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "#!.*"
+      }
     },
     "_expression": {
       "type": "CHOICE",
