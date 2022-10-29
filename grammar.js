@@ -3,10 +3,7 @@ module.exports = grammar({
 
   word: $ => $.identifier,
 
-  extras: $ => [
-    $.comment,
-    /[\s\n\t]/,
-  ],
+  extras: $ => [ $.comment, /\s/ ],
 
   precedences: _ => [
     [
@@ -67,7 +64,7 @@ module.exports = grammar({
     ),
     variable_declaration: $ => prec.left('assignment', seq('let', field('name', $.identifier), optional(seq('=', $._expression)))),
     function_declaration: $ => seq('fn', alias($.identifier, $.function_name), $.parameter_list, alias($.block, $.function_body)),
-    parameter_list: $ => seq('(', commaSep($.identifier), ')'),
+    parameter_list: $ => seq('(', trailingCommaSep($.identifier), ')'),
 
     while: $ => seq('while', alias($._expression, $.cond), $.block),
     for: $ => prec.left(1, seq( // XXX: not sure why can't use general prec rule for this...
@@ -98,7 +95,7 @@ module.exports = grammar({
       seq($._call, '[', $._expression, ']'),
     )),
     call: $ => prec.right(1, seq($._call, $.argument_list)),
-    argument_list: $ => seq('(', commaSep($._expression), ')'),
+    argument_list: $ => seq('(', trailingCommaSep($._expression), ')'),
 
     if: $ => prec.left(seq(
       'if',
@@ -185,10 +182,6 @@ module.exports = grammar({
 
 function commaSep1(rule) {
   return seq(rule, repeat(seq(',', rule)), optional(','))
-}
-
-function commaSep(rule) {
-  return optional(commaSep1(rule))
 }
 
 function trailingCommaSep(rule) {
