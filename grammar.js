@@ -137,12 +137,9 @@ module.exports = grammar({
       )))
     ),
 
-    // array: $ => seq('[', repeat(seq($._expression, optional(','))), ']'),
-    array: $ => seq('[', commaSep($._expression), ']'),
+    array: $ => seq('[', trailingCommaSep($._expression), ']'),
 
-    hashmap: $ => seq('{',
-      optional(seq($.keyvalue, repeat(seq(',', $.keyvalue)), optional(','))),
-    '}'),
+    hashmap: $ => seq('{', trailingCommaSep($.keyvalue), '}'),
     keyvalue: $ => seq(field('key', $._hashmap_key), ':', field('value', $._expression)),
     _hashmap_key: $ => choice(
       $.identifier,
@@ -192,4 +189,8 @@ function commaSep1(rule) {
 
 function commaSep(rule) {
   return optional(commaSep1(rule))
+}
+
+function trailingCommaSep(rule) {
+  return optional(seq(commaSep1(rule), optional(',')))
 }

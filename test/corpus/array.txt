@@ -3,12 +3,25 @@ array
 ==================
 []
 [a, b]
+[a,] // can have trailling comma
+[,b] // error
+[,]  // error
 ---
 (source_file
  (array)
  (array
   (identifier)
-  (identifier)))
+  (identifier))
+ (array
+  (identifier))
+ (comment)
+ (array
+  (ERROR)
+  (identifier))
+ (comment)
+ (array
+  (ERROR))
+ (comment))
 
 
 ===========================
