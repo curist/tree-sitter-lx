@@ -8,6 +8,5 @@ hello
 ---
 
 (source_file
- (shebang)
- (expression
-  (hello)))
+ (shell_bang)
+ (identifier))

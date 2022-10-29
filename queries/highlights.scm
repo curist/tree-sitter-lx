@@ -1,6 +1,6 @@
 [
- (hello)
-] @keyword
+ (identifier)
+] @variable
 
 (comment) @comment @spell
-(shebang) @preproc
+(shell_bang) @preproc

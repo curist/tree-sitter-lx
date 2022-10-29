@@ -1,4 +1,4 @@
 #!/usr/bin/env lx
 // ^ preproc
 hello
-// ^ keyword
+// ^ variable

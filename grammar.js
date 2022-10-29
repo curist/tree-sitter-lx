@@ -1,3 +1,6 @@
+const _numeral = () =>
+  seq(repeat1(/[0-9]/), optional(seq('.', repeat1(/[0-9]/))))
+
 module.exports = grammar({
   name: 'lx',
 
@@ -9,13 +12,18 @@ module.exports = grammar({
   rules: {
     source_file: $ => seq(
       optional($.shell_bang),
-      repeat($.expression),
+      repeat($._expression),
     ),
     shell_bang: _ => /#!.*/,
-    expression: $ => choice(
-      $.hello,
+    _expression: $ => choice(
+      $._primary,
     ),
-    hello: $ => 'hello',
+    _primary: $ => choice(
+      $.identifier,
+      $.number,
+    ),
+    identifier: _ => /[a-zA-Z_][a-zA-Z0-9_]*/,
+    number: _ => token(seq(optional('-'), _numeral())),
     comment: _ => token(seq('//', /.*/)),
   }
 })
