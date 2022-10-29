@@ -1,3 +1,9 @@
+// TODO:
+// dot field access
+// array index access
+// loop statements
+// hashmap
+// break / continue
 module.exports = grammar({
   name: 'lx',
 
@@ -45,6 +51,7 @@ module.exports = grammar({
       $.array,
       $.block,
       $.if,
+      $.while,
     )),
 
     block: $ => seq('{', repeat(choice($._expression, $.defer)), optional($.return), '}'),
@@ -58,6 +65,8 @@ module.exports = grammar({
     variable_declaration: $ => prec.left('assignment', seq('let', field('name', $.identifier), optional(seq('=', $._expression)))),
     function_declaration: $ => seq('fn', alias($.identifier, $.function_name), $.parameter_list, alias($.block, $.function_body)),
     parameter_list: $ => seq('(', commaSep($.identifier), ')'),
+
+    while: $ => seq('while', alias($._expression, $.cond), $.block),
 
     assignment: $ => prec.left('assignment', seq($._lefthand_expression, '=', $._expression)),
     _lefthand_expression: $ => choice(

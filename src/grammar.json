@@ -82,6 +82,10 @@
             {
               "type": "SYMBOL",
               "name": "if"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "while"
             }
           ]
         }
@@ -311,6 +315,28 @@
         {
           "type": "STRING",
           "value": ")"
+        }
+      ]
+    },
+    "while": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "while"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
+          },
+          "named": true,
+          "value": "cond"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block"
         }
       ]
     },

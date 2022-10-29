@@ -69,3 +69,89 @@ if cond {
      (else_clause
       (block
        (number)))))))
+
+==========================
+while loop - basic
+==========================
+while true {}
+a = while x {}
+while while x {} {}
+---
+(source_file
+ (while
+  (cond
+   (boolean))
+  (block))
+ (assignment
+  (identifier)
+  (while
+   (cond
+    (identifier))
+   (block)))
+ (while
+  (cond
+   (while
+    (cond
+     (identifier))
+    (block)))
+  (block)))
+
+
+==========================
+while loop - nesting
+==========================
+let x = 1
+let sum = 0
+while (while x < 10 {
+  x = x + 1
+  sum = sum + x
+  sum < 100
+}) {
+  defer x = 0
+  print(sum)
+}
+// not sure if there's practical usage,
+// but since `while` loop is also an expression,
+// we can also nest `while` here
+---
+(source_file
+ (variable_declaration
+  (identifier)
+  (number))
+ (variable_declaration
+  (identifier)
+  (number))
+ (while
+  (cond
+   (parenthesized_expression
+    (while
+     (cond
+      (binary_expression
+       (identifier)
+       (number)))
+     (block
+      (assignment
+       (identifier)
+       (binary_expression
+        (identifier)
+        (number)))
+      (assignment
+       (identifier)
+       (binary_expression
+        (identifier)
+        (identifier)))
+      (binary_expression
+       (identifier)
+       (number))))))
+  (block
+   (defer
+    (assignment
+     (identifier)
+     (number)))
+   (call
+    (identifier)
+    (argument_list
+     (identifier)))))
+  (comment)
+  (comment)
+  (comment))
