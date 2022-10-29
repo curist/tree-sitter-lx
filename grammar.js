@@ -50,7 +50,7 @@ module.exports = grammar({
       $.function_declaration,
     ),
     variable_declaration: $ => prec.right(seq('let', field('name', $.identifier), optional(seq('=', $._expression)))),
-    function_declaration: $ => seq('fn', field('name', $.identifier), $.parameter_list),
+    function_declaration: $ => seq('fn', alias($.identifier, $.function_name), $.parameter_list, alias($.block, $.function_body)),
     parameter_list: $ => seq('(', commaSep($.identifier), ')'),
 
     _call: $ => prec.right(1, choice(

@@ -15,3 +15,33 @@ let x = [1, 2]
   (array
    (number)
    (number))))
+
+======================
+function declration
+======================
+fn a() {}
+fn x(a,b) {
+  let sum = a + b
+  print(sum)
+}
+---
+(source_file
+ (function_declaration
+  (function_name)
+  (parameter_list)
+  (function_body))
+ (function_declaration
+  (function_name)
+  (parameter_list
+   (identifier)
+   (identifier))
+  (function_body
+   (variable_declaration
+    (identifier)
+    (binary_expression
+     (identifier)
+     (identifier)))
+   (call
+    (identifier)
+    (argument_list
+     (identifier))))))
