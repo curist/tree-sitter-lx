@@ -1,0 +1,16 @@
+==================
+array
+==================
+[]
+[a, b]
+[12 3 b]
+---
+(source_file
+ (array)
+ (array
+  (identifier)
+  (identifier))
+ (array
+  (number)
+  (number)
+  (identifier)))

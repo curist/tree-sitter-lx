@@ -1,6 +1,3 @@
-const _numeral = () =>
-  seq(repeat1(/[0-9]/), optional(seq('.', repeat1(/[0-9]/))))
-
 module.exports = grammar({
   name: 'lx',
 
@@ -19,7 +16,10 @@ module.exports = grammar({
     shell_bang: _ => token.immediate(/#!.*/),
     _expression: $ => choice(
       $._primary,
+      $.array,
     ),
+    field_access: $ => seq($._expression, '[', $._expression, ']'),
+    array: $ => seq('[', repeat(seq($._expression, optional(','))), ']'),
     _primary: $ => choice(
       $.identifier,
       $.number,
@@ -28,7 +28,11 @@ module.exports = grammar({
       $.nil,
     ),
     identifier: _ => /[a-zA-Z_][a-zA-Z0-9_]*/,
-    number: _ => token(seq(optional('-'), _numeral())),
+    number: _ => {
+      const _numeral = () =>
+        seq(repeat1(/[0-9]/), optional(seq('.', repeat1(/[0-9]/))))
+      return token(seq(optional('-'), _numeral()))
+    },
     string: $ => seq(
       '"',
       repeat(choice(
@@ -47,3 +51,11 @@ module.exports = grammar({
     comment: _ => token(seq('//', /.*/)),
   }
 })
+
+function commaSep1(rule) {
+  return seq(rule, repeat(seq(',', rule)), optional(','))
+}
+
+function commaSep(rule) {
+  return optional(commaSep1(rule))
+}
