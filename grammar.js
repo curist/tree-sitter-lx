@@ -22,8 +22,9 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.source_file, $.binary_expression],
-    [$.source_file, $.call],
-    [$.call, $.parenthesized_expression],
+    // [$.source_file, $.call],
+    // [$._expression, $.call],
+    // [$.call, $.parenthesized_expression],
   ],
 
   rules: {
@@ -34,16 +35,14 @@ module.exports = grammar({
     shell_bang: _ => token.immediate(/#!.*/),
     _expression: $ => seq(choice(
       $.call,
-      $.parenthesized_expression,
       $.unary_expression,
       $.binary_expression,
       $.array,
       $._primary,
     )),
 
-    parenthesized_expression: $ => seq('(', $._expression, ')'),
-    call: $ => seq($._expression, '(', commaSep($._expression), ')'),
-
+    call: $ => prec(1, seq($._primary, field('arguments', $.argument_list))),
+    argument_list: $ => seq('(', commaSep($._expression), ')'),
 
     unary_expression: $ => choice(
       ...['!', '-'].map((operator) =>
@@ -84,6 +83,7 @@ module.exports = grammar({
       $.string,
       $.boolean,
       $.nil,
+      $.parenthesized_expression,
     ),
     identifier: _ => /[a-zA-Z_][a-zA-Z0-9_]*/,
     number: _ => {
@@ -106,6 +106,7 @@ module.exports = grammar({
     )),
     boolean: _ => choice('true', 'false'),
     nil: _ => 'nil',
+    parenthesized_expression: $ => seq('(', $._expression, ')'),
 
     comment: _ => seq('//', /.*/),
   }

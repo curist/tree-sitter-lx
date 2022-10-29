@@ -49,6 +49,11 @@ expression calling
 ========================
 a + (b)(c)
 ---
-()
-
-
+(source_file
+ (binary_expression
+  (identifier)
+  (call
+   (parenthesized_expression
+    (identifier))
+   (argument_list
+    (identifier)))))
