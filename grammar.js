@@ -34,11 +34,18 @@ module.exports = grammar({
     ),
     shell_bang: _ => token.immediate(/#!.*/),
     _expression: $ => seq(choice(
-      $._call,
+      $._declaration,
       $.unary_expression,
       $.binary_expression,
+      $._call,
       $.array,
     )),
+
+    _declaration: $ => choice(
+      // TODO: fn decl
+      $.variable_declaration,
+    ),
+    variable_declaration: $ => prec.right(seq('let', $.identifier, optional(seq('=', $._expression)))),
 
     _call: $ => prec.right(1, choice(
       $._primary,
