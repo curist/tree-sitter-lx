@@ -98,6 +98,7 @@ module.exports = grammar({
       $.number,
       $.string,
       $.boolean,
+      $.lambda,
       $.nil,
       $.parenthesized_expression,
     ),
@@ -123,6 +124,7 @@ module.exports = grammar({
     boolean: _ => choice('true', 'false'),
     nil: _ => 'nil',
     parenthesized_expression: $ => seq('(', $._expression, ')'),
+    lambda: $ => seq('fn', $.parameter_list, alias($.block, $.function_body)),
 
     comment: _ => seq('//', /.*/),
   }

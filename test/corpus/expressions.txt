@@ -126,3 +126,57 @@ b + { 1 }
     (number)
     (number)))
   (number)))
+
+
+========================
+lambda expression
+========================
+fn(){}
+let foo = fn(a) {
+  a b c
+}
+let adder = fn (a) {
+  fn(b) { a + b }
+}
+let add5 = adder(5)
+print(add5(37))
+---
+(source_file
+ (lambda
+  (parameter_list)
+  (function_body))
+ (variable_declaration
+  (identifier)
+  (lambda
+   (parameter_list
+    (identifier))
+   (function_body
+    (identifier)
+    (identifier)
+    (identifier))))
+ (variable_declaration
+  (identifier)
+  (lambda
+   (parameter_list
+    (identifier))
+   (function_body
+    (lambda
+     (parameter_list
+      (identifier))
+     (function_body
+      (binary_expression
+       (identifier)
+       (identifier)))))))
+  (variable_declaration
+   (identifier)
+   (call
+    (identifier)
+    (argument_list
+     (number))))
+  (call
+   (identifier)
+   (argument_list
+    (call
+     (identifier)
+     (argument_list
+      (number))))))

@@ -36,6 +36,10 @@
           "named": true
         },
         {
+          "type": "lambda",
+          "named": true
+        },
+        {
           "type": "nil",
           "named": true
         },
@@ -99,6 +103,10 @@
           "named": true
         },
         {
+          "type": "lambda",
+          "named": true
+        },
+        {
           "type": "nil",
           "named": true
         },
@@ -159,6 +167,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "lambda",
             "named": true
           },
           {
@@ -274,6 +286,10 @@
             "named": true
           },
           {
+            "type": "lambda",
+            "named": true
+          },
+          {
             "type": "nil",
             "named": true
           },
@@ -338,6 +354,10 @@
           "named": true
         },
         {
+          "type": "lambda",
+          "named": true
+        },
+        {
           "type": "nil",
           "named": true
         },
@@ -391,6 +411,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "lambda",
           "named": true
         },
         {
@@ -454,6 +478,10 @@
           "named": true
         },
         {
+          "type": "lambda",
+          "named": true
+        },
+        {
           "type": "nil",
           "named": true
         },
@@ -494,6 +522,25 @@
         },
         {
           "type": "function_name",
+          "named": true
+        },
+        {
+          "type": "parameter_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lambda",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "function_body",
           "named": true
         },
         {
@@ -552,6 +599,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "lambda",
           "named": true
         },
         {
@@ -615,6 +666,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "lambda",
           "named": true
         },
         {
@@ -718,6 +773,10 @@
             "named": true
           },
           {
+            "type": "lambda",
+            "named": true
+          },
+          {
             "type": "nil",
             "named": true
           },
@@ -790,6 +849,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "lambda",
           "named": true
         },
         {
