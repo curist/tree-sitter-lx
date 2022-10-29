@@ -28,10 +28,6 @@ module.exports = grammar({
   conflicts: $ => [
     [$.source_file, $.binary_expression],
     [$.block, $.binary_expression],
-    // [$.for, $._expression],
-    // [$.source_file, $.call],
-    // [$._expression, $.call],
-    // [$.call, $.parenthesized_expression],
   ],
 
   rules: {
