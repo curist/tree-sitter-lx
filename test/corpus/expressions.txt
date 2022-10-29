@@ -29,3 +29,22 @@ b
  (binary_expression
   (identifier)
   (identifier)))
+
+
+========================
+parenthesized expression
+========================
+a + (a)
+(a + b) * c
+---
+(source_file
+ (binary_expression
+  (identifier)
+  (parenthesized_expression
+   (identifier)))
+ (binary_expression
+  (parenthesized_expression
+   (binary_expression
+    (identifier)
+    (identifier)))
+  (identifier)))

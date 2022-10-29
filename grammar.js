@@ -42,7 +42,10 @@ module.exports = grammar({
       $.binary_expression,
       $.array,
       $._primary,
+      $.parenthesized_expression,
     )),
+
+    parenthesized_expression: $ => seq('(', $._expression, ')'),
 
     unary_expression: $ => choice(
       ...['!', '-'].map((operator) =>
