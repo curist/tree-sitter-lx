@@ -1,23 +1,8 @@
 [
- "if"
- "else"
-] @conditional
-
-[
- "and"
- "or"
-] @keyword.operator
-
-
-[
  "let"
  (return)
  (defer)
 ] @keyword
-
-[
- (for)
-] @repeat
 
 "fn" @keyword.function
 (function_declaration
@@ -39,27 +24,15 @@
  "}"
 ] @punctuation.bracket
 
-[
- "!"
- "-"
- "+"
- "-"
- "*"
- "/"
- "=="
- "!="
- "<="
- ">="
- "<"
- ">"
- "="
-] @operator
+[ "if" "else" ] @conditional
 
-[
- ";"
- ","
- "."
-] @punctuation.delimiter 
+(for) @repeat
+
+(unary_expression operator: (_) @operator)
+(binary_expression operator: (_) @operator)
+[ "and" "or" ] @keyword.operator
+
+[ ";" "," "." ] @punctuation.delimiter 
 
 (keyvalue key: (identifier) @field)
 
@@ -73,7 +46,7 @@
 (number) @number
 (nil) @constant.builtin
 
-(comment) @comment @spell
 (shell_bang) @preproc
+(comment) @comment
 
 (ERROR) @error
