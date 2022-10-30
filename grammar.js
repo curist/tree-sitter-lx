@@ -46,6 +46,12 @@ module.exports = grammar({
     )),
 
     hashmap: $ => seq('{', trailingCommaSep($.keyvalue), '}'),
+    keyvalue: $ => seq(field('key', $._hashmap_key), ':', field('value', $._expression)),
+    _hashmap_key: $ => choice(
+      $.identifier,
+      seq('[', $._expression, ']'),
+    ),
+
     block: $ => seq('{', repeat(choice($._expression, $._block_statement)), optional($.return), '}'),
     return: $ => prec('unary_statement', seq('return', optional($._expression))),
     _block_statement: $ => choice(
@@ -83,10 +89,7 @@ module.exports = grammar({
       ),
     ),
 
-    assignment: $ => prec.left('assignment', seq($._lefthand_expression, '=', $._expression)),
-    _lefthand_expression: $ => choice(
-      $._call,
-    ),
+    assignment: $ => prec.left('assignment', seq($._call, '=', $._expression)),
 
     _call: $ => prec.right(1, choice(
       $._primary,
@@ -141,12 +144,6 @@ module.exports = grammar({
     ),
 
     array: $ => seq('[', trailingCommaSep($._expression), ']'),
-
-    keyvalue: $ => seq(field('key', $._hashmap_key), ':', field('value', $._expression)),
-    _hashmap_key: $ => choice(
-      $.identifier,
-      seq('[', $._expression, ']'),
-    ),
 
     _primary: $ => choice(
       $.identifier,

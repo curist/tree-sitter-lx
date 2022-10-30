@@ -16,6 +16,8 @@ let prompt = fn() {Lx.prompt(">")}
 for let line = prompt(); line {
 //^ repeat
   print(line)
+  if true { break }
+  for false { continue }
   return x
   // ^ keyword
 }

@@ -2,6 +2,8 @@
  "let"
  "return"
  "defer"
+ (break)
+ (continue)
 ] @keyword
 
 "fn" @keyword.function
