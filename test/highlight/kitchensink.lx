@@ -18,6 +18,9 @@ for let line = prompt(); line {
   print(line)
   if true { break }
   for false { continue }
+  if nil {
+    break 123 // break can optionally take a value
+  }
   return x
   // ^ keyword
 }

@@ -2,7 +2,7 @@
  "let"
  "return"
  "defer"
- (break)
+ "break"
  (continue)
 ] @keyword
 

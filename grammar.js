@@ -52,15 +52,15 @@ module.exports = grammar({
       seq('[', $._expression, ']'),
     ),
 
-    block: $ => seq('{', repeat(choice($._expression, $._block_statement)), optional($.return), '}'),
-    return: $ => prec('unary_statement', seq('return', optional($._expression))),
-    _block_statement: $ => choice(
-      $.defer,
+    block: $ => seq('{', repeat(choice($._expression, $.defer)), optional($._end_of_block_statement), '}'),
+    defer: $ => prec('unary_statement', seq('defer', $._expression)),
+    _end_of_block_statement: $ => choice(
       $.break,
       $.continue,
+      $.return,
     ),
-    defer: $ => prec('unary_statement', seq('defer', $._expression)),
-    break: _ => 'break',
+    return: $ => prec('unary_statement', seq('return', optional($._expression))),
+    break: $ => prec('unary_statement', seq('break', optional($._expression))),
     continue: _ => 'continue',
 
     _declaration: $ => choice(

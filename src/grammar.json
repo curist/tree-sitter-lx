@@ -239,7 +239,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "_block_statement"
+                "name": "defer"
               }
             ]
           }
@@ -249,7 +249,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "return"
+              "name": "_end_of_block_statement"
             },
             {
               "type": "BLANK"
@@ -259,6 +259,40 @@
         {
           "type": "STRING",
           "value": "}"
+        }
+      ]
+    },
+    "defer": {
+      "type": "PREC",
+      "value": "unary_statement",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "defer"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        ]
+      }
+    },
+    "_end_of_block_statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "break"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "continue"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "return"
         }
       ]
     },
@@ -287,24 +321,7 @@
         ]
       }
     },
-    "_block_statement": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "defer"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "break"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "continue"
-        }
-      ]
-    },
-    "defer": {
+    "break": {
       "type": "PREC",
       "value": "unary_statement",
       "content": {
@@ -312,18 +329,22 @@
         "members": [
           {
             "type": "STRING",
-            "value": "defer"
+            "value": "break"
           },
           {
-            "type": "SYMBOL",
-            "name": "_expression"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_expression"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           }
         ]
       }
-    },
-    "break": {
-      "type": "STRING",
-      "value": "break"
     },
     "continue": {
       "type": "STRING",

@@ -275,15 +275,26 @@ for x = x.parent; x {_}
 break / continue
 ==========================
 break // out of block, just an identifier (XXX: how do we deal with reserved keywords?)
-{ break continue }
-for x { if _ { break } print(cont) }
+{ asdf continue }
+{ continue break } // break/continue can only appear at end of block, thus second break is an ERROR
+for x {
+  if _ {
+    break 1 // can optionally break with value
+  }
+  print(cont)
+}
 ---
 (source_file
  (identifier)
  (comment)
  (block
-  (break)
+  (identifier)
   (continue))
+ (block
+  (continue)
+  (ERROR
+   (identifier)))
+ (comment)
  (for
   (cond
    (identifier))
@@ -292,7 +303,9 @@ for x { if _ { break } print(cont) }
     (cond
      (identifier))
     (then_clause
-     (break)))
+     (break
+      (number))
+     (comment)))
    (call
     (identifier)
     (argument_list
