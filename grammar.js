@@ -21,8 +21,8 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.source_file, $.binary_expression],
+    [$.hashmap, $.block],
     [$.block, $.binary_expression],
-    [$.block, $.hashmap],
   ],
 
   rules: {
@@ -45,14 +45,17 @@ module.exports = grammar({
       $.for,
     )),
 
-    hashmap: $ => seq('{', trailingCommaSep($.keyvalue), '}'),
+    hashmap: $ => seq('{', commaSep($.keyvalue), '}'),
     keyvalue: $ => seq(field('key', $._hashmap_key), ':', field('value', $._expression)),
     _hashmap_key: $ => choice(
       $.identifier,
       seq('[', $._expression, ']'),
     ),
 
-    block: $ => seq('{', repeat(choice($._expression, $.defer)), optional($._end_of_block_statement), '}'),
+    block: $ => seq('{', seq(
+      repeat(choice($._expression, $.defer)),
+      optional($._end_of_block_statement),
+    ), '}'),
     defer: $ => prec('unary_statement', seq('defer', $._expression)),
     _end_of_block_statement: $ => choice(
       $.break,
@@ -67,9 +70,16 @@ module.exports = grammar({
       $.variable_declaration,
       $.function_declaration,
     ),
-    variable_declaration: $ => prec.left('assignment', seq('let', field('name', $.identifier), optional(seq('=', $._expression)))),
-    function_declaration: $ => seq('fn', alias($.identifier, $.function_name), $.parameter_list, alias($.block, $.function_body)),
-    parameter_list: $ => seq('(', trailingCommaSep($.identifier), ')'),
+    variable_declaration: $ => prec.left('assignment', seq(
+      'let', field('name', $.identifier),
+      optional(seq('=', $._expression)),
+    )),
+    function_declaration: $ => seq(
+      'fn', alias($.identifier, $.function_name),
+      $.parameter_list,
+      alias($.block, $.function_body),
+    ),
+    parameter_list: $ => seq('(', commaSep($.identifier), ')'),
 
     for: $ => prec.left(1,  // XXX: not sure why can't use general prec rule for this...
       choice(
@@ -104,7 +114,7 @@ module.exports = grammar({
       seq($._call, '[', $._expression, ']'),
     )),
     call: $ => prec.right(1, seq($._call, $.argument_list)),
-    argument_list: $ => seq('(', trailingCommaSep($._expression), ')'),
+    argument_list: $ => seq('(', commaSep($._expression), ')'),
 
     if: $ => prec.left(seq(
       'if',
@@ -143,7 +153,7 @@ module.exports = grammar({
       )))
     ),
 
-    array: $ => seq('[', trailingCommaSep($._expression), ']'),
+    array: $ => seq('[', commaSep($._expression), ']'),
 
     _primary: $ => choice(
       $.identifier,
@@ -155,11 +165,7 @@ module.exports = grammar({
       $._parenthesized_expression,
     ),
     identifier: _ => /[a-zA-Z_][a-zA-Z0-9_]*/,
-    number: _ => {
-      const _numeral = () =>
-        seq(repeat1(/[0-9]/), optional(seq('.', repeat1(/[0-9]/))))
-      return token(seq(optional('-'), _numeral()))
-    },
+    number: _ => /-?\d+(\.\d+)?/,
     string: _ => seq('"', repeat(choice(/[^"\\]/, /\\./)), '"'),
     boolean: _ => choice('true', 'false'),
     nil: _ => 'nil',
@@ -174,6 +180,6 @@ function commaSep1(rule) {
   return seq(rule, repeat(seq(',', rule)), optional(','))
 }
 
-function trailingCommaSep(rule) {
-  return optional(seq(commaSep1(rule), optional(',')))
+function commaSep(rule) {
+  return optional(commaSep1(rule))
 }
