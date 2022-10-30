@@ -8,15 +8,14 @@
  "or"
 ] @keyword.operator
 
-(import) @include
 
 [
+ "let"
  (return)
  (defer)
 ] @keyword
 
 [
- "let"
  (while)
  (for)
 ] @repeat
@@ -29,8 +28,8 @@
 (call
   (identifier) @function.builtin
   (#any-of? @function.builtin
-   "dir" "clock" "print" "type" "prompt"
-   "str" "keys" "append" "len"))
+   "require" "print" "prompt"
+   "dir" "type" "str" "len" "keys" "append"))
 
 [
  "("
