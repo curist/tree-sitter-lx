@@ -36,7 +36,7 @@ a = {
      (identifier)
      (number)))
  (comment)
- (hashmap
+ (block
    (ERROR))
  (comment)
  (hashmap

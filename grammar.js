@@ -22,6 +22,7 @@ module.exports = grammar({
   conflicts: $ => [
     [$.source_file, $.binary_expression],
     [$.block, $.binary_expression],
+    [$.block, $.hashmap],
   ],
 
   rules: {
@@ -45,10 +46,8 @@ module.exports = grammar({
       $.for,
     )),
 
-    block: $ => choice(
-      seq('{', repeat1(choice($._expression, $._block_statement)), optional($.return), '}'),
-      seq('{', $.return, '}'),
-    ),
+    hashmap: $ => seq('{', trailingCommaSep($.keyvalue), '}'),
+    block: $ => seq('{', repeat(choice($._expression, $._block_statement)), optional($.return), '}'),
     return: $ => prec('unary_statement', seq('return', optional($._expression))),
     _block_statement: $ => choice(
       $.defer,
@@ -136,7 +135,6 @@ module.exports = grammar({
 
     array: $ => seq('[', trailingCommaSep($._expression), ']'),
 
-    hashmap: $ => seq('{', trailingCommaSep($.keyvalue), '}'),
     keyvalue: $ => seq(field('key', $._hashmap_key), ':', field('value', $._expression)),
     _hashmap_key: $ => choice(
       $.identifier,
