@@ -1,7 +1,7 @@
 [
  "let"
- (return)
- (defer)
+ "return"
+ "defer"
 ] @keyword
 
 "fn" @keyword.function
