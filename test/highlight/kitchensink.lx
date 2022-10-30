@@ -46,6 +46,7 @@ let x = a != b and foo
 
 for true and false {
 //  ^ boolean ^ boolean
+//        ^ keyword.operator
   kkthx = 10
 }
 let mymod = {

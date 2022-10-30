@@ -11,11 +11,11 @@
   (function_name) @function
   (parameter_list (identifier) @parameter))
 
-(call
-  (identifier) @function.builtin
+(call name: (identifier) @function.builtin
   (#any-of? @function.builtin
-   "require" "print" "prompt"
+   "require" "print"
    "dir" "type" "str" "len" "keys" "append"))
+(call name: (identifier) @function)
 
 [
  "(" ")"
@@ -28,9 +28,9 @@
 (for) @repeat
 
 "=" @operator
+[ "and" "or" ] @keyword.operator
 (unary_expression operator: [_] @operator)
 (binary_expression operator: [_] @operator)
-[ "and" "or" ] @keyword.operator
 
 [ ";" "," "." ] @punctuation.delimiter 
 
