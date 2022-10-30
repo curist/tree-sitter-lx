@@ -16,20 +16,17 @@
    "dir" "type" "str" "len" "keys" "append"))
 
 [
- "("
- ")"
- "["
- "]"
- "{"
- "}"
+ "(" ")"
+ "[" "]"
+ "{" "}"
 ] @punctuation.bracket
 
 [ "if" "else" ] @conditional
 
 (for) @repeat
 
-(unary_expression operator: (_) @operator)
-(binary_expression operator: (_) @operator)
+(unary_expression operator: [_] @operator)
+(binary_expression operator: [_] @operator)
 [ "and" "or" ] @keyword.operator
 
 [ ";" "," "." ] @punctuation.delimiter 
