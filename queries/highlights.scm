@@ -39,7 +39,7 @@
 (identifier) @variable
 
 ((identifier) @constant
- (#lua-match? @constant "^[A-Z][A-Za-z_0-9]*$"))
+ (#match? @constant "^[A-Z][A-Za-z_0-9]{,20}$"))
 
 (boolean) @boolean
 (string) @string
