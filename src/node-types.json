@@ -78,10 +78,6 @@
         {
           "type": "variable_declaration",
           "named": true
-        },
-        {
-          "type": "while",
-          "named": true
         }
       ]
     }
@@ -165,10 +161,6 @@
         {
           "type": "variable_declaration",
           "named": true
-        },
-        {
-          "type": "while",
-          "named": true
         }
       ]
     }
@@ -251,10 +243,6 @@
         },
         {
           "type": "variable_declaration",
-          "named": true
-        },
-        {
-          "type": "while",
           "named": true
         }
       ]
@@ -346,10 +334,6 @@
           },
           {
             "type": "variable_declaration",
-            "named": true
-          },
-          {
-            "type": "while",
             "named": true
           }
         ]
@@ -491,10 +475,6 @@
           {
             "type": "variable_declaration",
             "named": true
-          },
-          {
-            "type": "while",
-            "named": true
           }
         ]
       }
@@ -595,10 +575,6 @@
         {
           "type": "variable_declaration",
           "named": true
-        },
-        {
-          "type": "while",
-          "named": true
         }
       ]
     }
@@ -691,10 +667,6 @@
         {
           "type": "variable_declaration",
           "named": true
-        },
-        {
-          "type": "while",
-          "named": true
         }
       ]
     }
@@ -783,10 +755,6 @@
         {
           "type": "variable_declaration",
           "named": true
-        },
-        {
-          "type": "while",
-          "named": true
         }
       ]
     }
@@ -870,10 +838,6 @@
         {
           "type": "variable_declaration",
           "named": true
-        },
-        {
-          "type": "while",
-          "named": true
         }
       ]
     }
@@ -956,10 +920,6 @@
         },
         {
           "type": "variable_declaration",
-          "named": true
-        },
-        {
-          "type": "while",
           "named": true
         }
       ]
@@ -1086,10 +1046,6 @@
         },
         {
           "type": "variable_declaration",
-          "named": true
-        },
-        {
-          "type": "while",
           "named": true
         }
       ]
@@ -1235,10 +1191,6 @@
         {
           "type": "variable_declaration",
           "named": true
-        },
-        {
-          "type": "while",
-          "named": true
         }
       ]
     }
@@ -1321,10 +1273,6 @@
         },
         {
           "type": "variable_declaration",
-          "named": true
-        },
-        {
-          "type": "while",
           "named": true
         }
       ]
@@ -1425,10 +1373,6 @@
           {
             "type": "variable_declaration",
             "named": true
-          },
-          {
-            "type": "while",
-            "named": true
           }
         ]
       },
@@ -1514,10 +1458,6 @@
           },
           {
             "type": "variable_declaration",
-            "named": true
-          },
-          {
-            "type": "while",
             "named": true
           }
         ]
@@ -1637,10 +1577,6 @@
         {
           "type": "variable_declaration",
           "named": true
-        },
-        {
-          "type": "while",
-          "named": true
         }
       ]
     }
@@ -1731,10 +1667,6 @@
         },
         {
           "type": "variable_declaration",
-          "named": true
-        },
-        {
-          "type": "while",
           "named": true
         }
       ]
@@ -1839,10 +1771,6 @@
         },
         {
           "type": "variable_declaration",
-          "named": true
-        },
-        {
-          "type": "while",
           "named": true
         }
       ]
@@ -1949,10 +1877,6 @@
           {
             "type": "variable_declaration",
             "named": true
-          },
-          {
-            "type": "while",
-            "named": true
           }
         ]
       }
@@ -2036,10 +1960,6 @@
         },
         {
           "type": "variable_declaration",
-          "named": true
-        },
-        {
-          "type": "while",
           "named": true
         }
       ]
@@ -2134,29 +2054,6 @@
         },
         {
           "type": "variable_declaration",
-          "named": true
-        },
-        {
-          "type": "while",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "while",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "block",
-          "named": true
-        },
-        {
-          "type": "cond",
           "named": true
         }
       ]
@@ -2320,10 +2217,6 @@
   },
   {
     "type": "true",
-    "named": false
-  },
-  {
-    "type": "while",
     "named": false
   },
   {

@@ -42,7 +42,6 @@ module.exports = grammar({
       $.hashmap,
       $.block,
       $.if,
-      $.while,
       $.for,
     )),
 
@@ -66,15 +65,23 @@ module.exports = grammar({
     function_declaration: $ => seq('fn', alias($.identifier, $.function_name), $.parameter_list, alias($.block, $.function_body)),
     parameter_list: $ => seq('(', trailingCommaSep($.identifier), ')'),
 
-    while: $ => seq('while', alias($._expression, $.cond), $.block),
-    for: $ => prec.left(1, seq( // XXX: not sure why can't use general prec rule for this...
-      'for',
-      optional(alias($._expression, $.init)),
-      ';',
-      optional(alias($._expression, $.cond)),
-      optional(seq(';', optional(alias($._expression, $.iter)))),
-      $.block,
-    )),
+    for: $ => prec.left(1,  // XXX: not sure why can't use general prec rule for this...
+      choice(
+        seq(
+          'for',
+          optional(alias($._expression, $.cond)),
+          $.block,
+        ),
+        seq(
+          'for',
+          optional(alias($._expression, $.init)),
+          ';',
+          optional(alias($._expression, $.cond)),
+          optional(seq(';', optional(alias($._expression, $.iter)))),
+          $.block,
+        ),
+      ),
+    ),
 
     assignment: $ => prec.left('assignment', seq($._lefthand_expression, '=', $._expression)),
     _lefthand_expression: $ => choice(

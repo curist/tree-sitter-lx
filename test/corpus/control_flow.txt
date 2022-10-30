@@ -76,42 +76,41 @@ if cond {
 
 
 ==========================
-while loop - basic
+for loop - basic
 ==========================
-while true {_}
-a = while x {_}
-while while x {_} {_}
+for {}
+for true {}
+a = for x {}
+for for x {} {}
 ---
 (source_file
- (while
+ (for
+  (block))
+ (for
   (cond
    (boolean))
-  (block
-   (identifier)))
+  (block))
  (assignment
   (identifier)
-  (while
+  (for
    (cond
     (identifier))
-   (block
-    (identifier))))
- (while
+   (block)))
+ (for
   (cond
-   (while
+   (for
     (cond
      (identifier))
-    (block
-     (identifier))))
-  (block
-   (identifier))))
+    (block)))
+  (block)))
 
 
 ==========================
-while loop - nesting
+for loop - nesting
 ==========================
 let x = 1
 let sum = 0
-while (while x < 10 {
+for (for x < 10 {
   x = x + 1
   sum = sum + x
   sum < 100
@@ -120,8 +119,8 @@ while (while x < 10 {
   print(sum)
 }
 // not sure if there's practical usage,
-// but since `while` loop is also an expression,
-// we can also nest `while` here
+// but since `for` loop is also an expression,
+// we can also nest `for` here
 ---
 (source_file
  (variable_declaration
@@ -130,9 +129,9 @@ while (while x < 10 {
  (variable_declaration
   (identifier)
   (number))
- (while
+ (for
   (cond
-   (while
+   (for
     (cond
      (binary_expression
       (identifier)
@@ -166,13 +165,14 @@ while (while x < 10 {
 
 
 ==========================
-for loop
+for loop - init/cond/term
 ==========================
 let i
-for i = 0; i < 10; i = i + 1 {_}
+for i = 0; i < 10; i = i + 1 {}
 
-for let x = 0; true; {_}
-for ; ; { print(endless) }
+for let x = 0; true; {}
+for init_iter; term_condition {}
+for { print(endless) }
 
 ---
 (source_file
@@ -193,8 +193,7 @@ for ; ; { print(endless) }
     (binary_expression
      (identifier)
      (number))))
-  (block
-   (identifier)))
+  (block))
  (for
   (init
    (variable_declaration
@@ -202,8 +201,13 @@ for ; ; { print(endless) }
     (number)))
   (cond
    (boolean))
-  (block
-   (identifier)))
+  (block))
+ (for
+  (init
+   (identifier))
+  (cond
+   (identifier))
+  (block))
  (for
   (block
    (call
@@ -211,9 +215,8 @@ for ; ; { print(endless) }
     (argument_list
      (identifier))))))
 
-
 ==========================
-for loop - nesting
+for loop - more nesting
 ==========================
 for ;; for;;{_} {_}
 for ; for;;{_} ;{_}
@@ -273,7 +276,7 @@ break / continue
 ==========================
 break // out of block, just an identifier (XXX: how do we deal with reserved keywords?)
 { break continue }
-while x { if _ { break } print(cont) }
+for x { if _ { break } print(cont) }
 ---
 (source_file
  (identifier)
@@ -281,7 +284,7 @@ while x { if _ { break } print(cont) }
  (block
   (break)
   (continue))
- (while
+ (for
   (cond
    (identifier))
   (block

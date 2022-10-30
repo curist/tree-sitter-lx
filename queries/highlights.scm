@@ -16,7 +16,6 @@
 ] @keyword
 
 [
- (while)
  (for)
 ] @repeat
 
@@ -77,4 +76,4 @@
 (comment) @comment @spell
 (shell_bang) @preproc
 
-
+(ERROR) @error
