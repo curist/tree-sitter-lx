@@ -1,0 +1,54 @@
+#!/bin/usr/env lx
+// ^ preproc
+
+let mod = require("this")
+//^ keyword
+//  ^ variable
+//      ^ operator
+//           ^ function.builtin
+let src = Lx.readTextFile("./examples/io.lox")
+//                         ^ string
+print(src)
+// ^ function.builtin
+
+let prompt = fn() {Lx.prompt(">")}
+//           ^ keyword.function
+for let line = prompt(); line {
+//^ repeat
+  print(line)
+  return x
+  // ^ keyword
+}
+
+let x = if true {
+  let x = 1 + 2 * 3
+} else { a: 1 }
+//       ^ field
+
+fn myfn(a, b, c) {
+// ^ function
+//         ^ parameter
+}
+let adder = fn(a) {
+  fn (b) { a + b }
+}
+let add5 = adder(5)
+print(add5(37))
+
+let nnn = nil
+//        ^ constant.builtin
+let x = a != b and foo
+
+for true and false {
+//  ^ boolean ^ boolean
+  kkthx = 10
+}
+let mymod = {
+  x: 1 -2 + -1,
+  foo: -a,
+  add: fn(a, b) {
+    a + b
+  },
+  [1 + 2]: 3,
+  [nnn]: "nil",
+}

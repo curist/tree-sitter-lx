@@ -25,6 +25,7 @@
 
 (for) @repeat
 
+"=" @operator
 (unary_expression operator: [_] @operator)
 (binary_expression operator: [_] @operator)
 [ "and" "or" ] @keyword.operator
