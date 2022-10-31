@@ -25,7 +25,7 @@
 
 [ "if" "else" ] @conditional
 
-(for) @repeat
+(for "for" @repeat)
 
 "=" @operator
 [ "and" "or" ] @keyword.operator
