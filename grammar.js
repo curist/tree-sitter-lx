@@ -142,6 +142,7 @@ module.exports = grammar({
         ['-', 'binary_plus'],
         ['*', 'binary_times'],
         ['/', 'binary_times'],
+        ['%', 'binary_times'],
         ['<', 'binary_relation'],
         ['<=', 'binary_relation'],
         ['==', 'binary_equality'],
