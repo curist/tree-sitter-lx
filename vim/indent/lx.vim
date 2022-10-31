@@ -201,7 +201,7 @@ endfunction
 
 " regexes that define continuation lines, not including (, {, or [.
 let s:opfirst = '^\C\%([<>=,.?^%|/&]\|\([-:+]\)\1\@!\|\*\+\|!=\|in\%(stanceof\)\=\>\)'
-let s:continuation = '\C\%([<=,.~!?/*^%|&:]\|+\@<!+\|-\@<!-\|=\@<!>\|\<\%(return\|break\|defer\)\)$'
+let s:continuation = '\C\%([<=,.~!?/*^%|&:]\|+\@<!+\|-\@<!-\|=\@<!>\|\<\%(import\|return\|break\|defer\)\)$'
 
 function s:Continues()
   let tok = matchstr(strpart(getline('.'),col('.')-15,15),s:continuation)
@@ -268,7 +268,7 @@ endfunction
 function s:IsBlock()
   let tok = s:PreviousToken()
   if tok =~ '\k'
-    return index(split('return let break defer'), tok) < (line('.')
+    return index(split('import return let break defer'), tok) < (line('.')
           \ != a:firstline) || s:Pure('s:PreviousToken') == '.'
   elseif tok == '*'
     return s:Pure('s:PreviousToken') == ':'

@@ -53,6 +53,10 @@
           "members": [
             {
               "type": "SYMBOL",
+              "name": "import"
+            },
+            {
+              "type": "SYMBOL",
               "name": "_declaration"
             },
             {
@@ -94,6 +98,23 @@
           ]
         }
       ]
+    },
+    "import": {
+      "type": "PREC_LEFT",
+      "value": "unary_statement",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "import"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        ]
+      }
     },
     "hashmap": {
       "type": "SEQ",
@@ -285,7 +306,7 @@
       ]
     },
     "return": {
-      "type": "PREC",
+      "type": "PREC_LEFT",
       "value": "unary_statement",
       "content": {
         "type": "SEQ",
@@ -310,7 +331,7 @@
       }
     },
     "break": {
-      "type": "PREC",
+      "type": "PREC_LEFT",
       "value": "unary_statement",
       "content": {
         "type": "SEQ",

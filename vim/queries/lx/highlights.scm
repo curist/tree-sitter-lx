@@ -1,3 +1,5 @@
+(import "import" @include)
+
 [
  "let"
  "return"
@@ -13,8 +15,7 @@
 
 (call name: (identifier) @function.builtin
   (#any-of? @function.builtin
-   "require" "print"
-   "dir" "type" "str" "len" "keys" "append"))
+   "print" "dir" "type" "str" "len" "keys" "append"))
 (call name: (identifier) @function)
 
 [
