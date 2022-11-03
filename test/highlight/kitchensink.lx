@@ -8,7 +8,7 @@ let mod = require("this")
 let src = Lx.readTextFile("./examples/io.lox")
 //                         ^ string
 print(src)
-// ^ function.builtin
+// ^ function
 
 let prompt = fn() {Lx.prompt(">")}
 //           ^ keyword.function

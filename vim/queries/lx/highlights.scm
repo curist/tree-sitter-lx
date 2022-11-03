@@ -11,14 +11,12 @@
   (function_name) @function
   (parameter_list (identifier) @parameter))
 
-(call name: (identifier) @function.builtin
-  (#any-of? @function.builtin
-   "print" "dir" "type" "str" "len" "keys" "append"))
-
-(call name: (identifier) @include
-      ((#match? @include "^require$")))
-
 (call name: (identifier) @function)
+(call name: (identifier) @function.builtin
+      (#any-of? @function.builtin
+       "print" "dir" "type" "str" "len" "keys" "append"))
+(call name: (identifier) @include
+      (#eq? @include "require"))
 
 [
  "(" ")"
