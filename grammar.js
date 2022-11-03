@@ -33,7 +33,6 @@ module.exports = grammar({
     ),
     shell_bang: _ => token.immediate(/#!.*/),
     _expression: $ => seq(choice(
-      $.import,
       $._declaration,
       $.assignment,
       $.unary_expression,
@@ -45,7 +44,6 @@ module.exports = grammar({
       $.if,
       $.for,
     )),
-    import: $ => prec.left('unary_statement', seq('import', $._expression)),
 
     hashmap: $ => seq('{', commaSep($.keyvalue), '}'),
     keyvalue: $ => seq(field('key', $._hashmap_key), ':', field('value', $._expression)),
