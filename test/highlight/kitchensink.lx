@@ -1,10 +1,11 @@
 #!/bin/usr/env lx
 // ^ preproc
 
-let mod = require("this")
+let mod = import "this"
 //^ keyword
 //  ^ variable
 //      ^ operator
+//           ^ include
 let src = Lx.readTextFile("./examples/io.lox")
 //                         ^ string
 print(src)
