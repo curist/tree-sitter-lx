@@ -4,27 +4,25 @@ import statement
 import a
 let x = import "foo"
 import a + b
-let foo = import a + b * c
+let foo = import "bar" + ".lx"
 ---
 (source_file
- (import
-  (identifier))
+ (ERROR)
+ (identifier)
  (variable_declaration
   (identifier)
   (import
    (string)))
- (import
-  (binary_expression
-   (identifier)
-   (identifier)))
+ (ERROR)
+ (binary_expression
+  (identifier)
+  (identifier))
  (variable_declaration
   (identifier)
-  (import
-   (binary_expression
-    (identifier)
-    (binary_expression
-     (identifier)
-     (identifier))))))
+  (binary_expression
+   (import
+    (string))
+   (string))))
 
 
 ======================

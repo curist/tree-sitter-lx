@@ -45,7 +45,7 @@ module.exports = grammar({
       $.if,
       $.for,
     )),
-    import: $ => prec.left('unary_statement', seq('import', $._expression)),
+    import: $ => prec.left('unary_statement', seq('import', $.string)),
 
     hashmap: $ => seq('{', commaSep($.keyvalue), '}'),
     keyvalue: $ => seq(field('key', $._hashmap_key), ':', field('value', $._expression)),
