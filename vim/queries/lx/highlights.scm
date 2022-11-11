@@ -34,9 +34,10 @@
 (unary_expression operator: [_] @operator)
 (binary_expression operator: [_] @operator)
 
-[ ";" "," "." ] @punctuation.delimiter 
+[ ";" "," "." ] @punctuation.delimiter
 
-(hashmap ".{" @punctuation.bracket)
+(hashmap open: ".{" @structure
+         close: "}" @structure)
 (keyvalue key: (identifier) @field)
 
 (identifier) @variable

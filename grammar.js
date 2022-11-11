@@ -46,7 +46,7 @@ module.exports = grammar({
     )),
     import: $ => prec.left('unary_statement', seq('import', $.string)),
 
-    hashmap: $ => seq('.{', commaSep($.keyvalue), '}'),
+    hashmap: $ => seq(field('open', '.{'), commaSep($.keyvalue), field('close', '}')),
     keyvalue: $ => seq(field('key', $._hashmap_key), ':', field('value', $._expression)),
     _hashmap_key: $ => choice(
       $.identifier,
