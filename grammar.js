@@ -50,7 +50,7 @@ module.exports = grammar({
     hashmap: $ => seq('{', commaSep($.keyvalue), '}'),
     keyvalue: $ => seq(field('key', $._hashmap_key), ':', field('value', $._expression)),
     _hashmap_key: $ => choice(
-      $.identifier,
+      seq('.', $.identifier),
       seq('[', $._expression, ']'),
     ),
 

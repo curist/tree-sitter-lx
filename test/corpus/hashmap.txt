@@ -4,10 +4,10 @@ hashmap
 {} // empty brace pair = empty hashmap
 let a = {}
 a = {
-  a: 1,
-  b: a + b
+  .a: 1,
+  .b: a + b
 }
-{_:1,} // can have trailing comma
+{._:1,} // can have trailing comma
 {,} // can't have comma if no keyvalue
 {[1 + 2]: 3, [x]:x} // can use expression as key
 {

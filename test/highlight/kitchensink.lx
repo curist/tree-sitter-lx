@@ -27,8 +27,7 @@ for let line = prompt(); line {
 
 let x = if true {
   let x = 1 + 2 * 3
-} else { a: 1 }
-//       ^ field
+} else { .akey: 1 }
 
 fn myfn(a, b, c) {
 // ^ function
@@ -50,9 +49,9 @@ for true and false {
   kkthx = 10
 }
 let mymod = {
-  x: 1 -2 + -1,
-  foo: -a,
-  add: fn(a, b) {
+  .x: 1 -2 + -1,
+  .foo: -a,
+  .add: fn(a, b) {
     a + b
   },
   [1 + 2]: 3,
