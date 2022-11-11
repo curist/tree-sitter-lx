@@ -21,7 +21,6 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.source_file, $.binary_expression],
-    [$.hashmap, $.block],
     [$.block, $.binary_expression],
   ],
 
@@ -47,10 +46,10 @@ module.exports = grammar({
     )),
     import: $ => prec.left('unary_statement', seq('import', $.string)),
 
-    hashmap: $ => seq('{', commaSep($.keyvalue), '}'),
+    hashmap: $ => seq('.{', commaSep($.keyvalue), '}'),
     keyvalue: $ => seq(field('key', $._hashmap_key), ':', field('value', $._expression)),
     _hashmap_key: $ => choice(
-      seq('.', $.identifier),
+      $.identifier,
       seq('[', $._expression, ']'),
     ),
 

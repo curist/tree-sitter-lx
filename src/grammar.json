@@ -121,7 +121,7 @@
       "members": [
         {
           "type": "STRING",
-          "value": "{"
+          "value": ".{"
         },
         {
           "type": "CHOICE",
@@ -203,17 +203,8 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "."
-            },
-            {
-              "type": "SYMBOL",
-              "name": "identifier"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "identifier"
         },
         {
           "type": "SEQ",
@@ -1571,10 +1562,6 @@
     [
       "source_file",
       "binary_expression"
-    ],
-    [
-      "hashmap",
-      "block"
     ],
     [
       "block",

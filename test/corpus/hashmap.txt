@@ -1,16 +1,16 @@
 ==================
 hashmap
 ==================
-{} // empty brace pair = empty hashmap
-let a = {}
-a = {
-  .a: 1,
-  .b: a + b
+.{} // empty brace pair = empty hashmap
+let a = .{}
+a = .{
+  a: 1,
+  b: a + b
 }
-{._:1,} // can have trailing comma
-{,} // can't have comma if no keyvalue
-{[1 + 2]: 3, [x]:x} // can use expression as key
-{
+.{_:1,} // can have trailing comma
+.{,} // can't have comma if no keyvalue
+.{[1 + 2]: 3, [x]:x} // can use expression as key
+.{
   // comment should not effect if a block is empty
 }
 ---
@@ -36,7 +36,7 @@ a = {
      (identifier)
      (number)))
  (comment)
- (block
+ (hashmap
    (ERROR))
  (comment)
  (hashmap
