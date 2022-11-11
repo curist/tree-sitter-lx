@@ -36,8 +36,8 @@
 
 [ ";" "," "." ] @punctuation.delimiter
 
-(hashmap open: ".{" @structure
-         close: "}" @structure)
+(hashmap open: ".{" @structure)
+(hashmap close: "}" @structure)
 (keyvalue key: (identifier) @field)
 
 (identifier) @variable
