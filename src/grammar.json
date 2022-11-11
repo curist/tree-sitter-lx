@@ -120,12 +120,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "open",
-          "content": {
-            "type": "STRING",
-            "value": ".{"
-          }
+          "type": "STRING",
+          "value": ".{"
         },
         {
           "type": "CHOICE",
@@ -173,12 +169,8 @@
           ]
         },
         {
-          "type": "FIELD",
-          "name": "close",
-          "content": {
-            "type": "STRING",
-            "value": "}"
-          }
+          "type": "STRING",
+          "value": "}"
         }
       ]
     },

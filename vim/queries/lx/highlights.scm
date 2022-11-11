@@ -36,7 +36,7 @@
 
 [ ";" "," "." ] @punctuation.delimiter 
 
-(hashmap) @punctuation.bracket
+(hashmap ".{" @punctuation.bracket)
 (keyvalue key: (identifier) @field)
 
 (identifier) @variable
