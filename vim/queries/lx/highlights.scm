@@ -22,6 +22,7 @@
  "(" ")"
  "[" "]"
  "{" "}"
+ "{" "}"
 ] @punctuation.bracket
 
 [ "if" "else" ] @conditional
@@ -35,6 +36,7 @@
 
 [ ";" "," "." ] @punctuation.delimiter 
 
+(hashmap) @punctuation.bracket
 (keyvalue key: (identifier) @field)
 
 (identifier) @variable
