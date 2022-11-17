@@ -16,7 +16,11 @@
 (call name: (identifier) @function)
 (call name: (identifier) @function.builtin
       (#any-of? @function.builtin
-       "print" "dir" "type" "str" "len" "keys" "append"))
+       "_1" "slurp" "int" "ord" "clock" "assoc" "push"
+       "pop" "append" "butlast" "concat" "str" "type"
+       "keys" "range" "each" "map" "filter" "fold"
+       "foldr" "len" "print" "groan"
+       ))
 
 [
  "(" ")"
