@@ -148,6 +148,7 @@ module.exports = grammar({
         ['!=', 'binary_equality'],
         ['>=', 'binary_relation'],
         ['>', 'binary_relation'],
+        ['->', 'unary'],
       ].map(([operator, precedence]) => prec.left(precedence, seq(
         field('left', $._expression),
         field('operator', operator),
