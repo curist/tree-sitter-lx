@@ -9,9 +9,8 @@
 ] @keyword
 
 "fn" @keyword.function
-(function_declaration
-  (function_name) @function
-  (parameter_list (identifier) @parameter))
+(function_declaration (function_name) @function)
+(function_declaration (parameter_list (identifier) @parameter))
 
 (call name: (identifier) @function)
 (call name: (identifier) @function.builtin
