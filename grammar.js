@@ -121,7 +121,7 @@ module.exports = grammar({
     call: $ => prec.right(1, seq(field('name', $._call), $.argument_list)),
     argument_list: $ => seq('(', commaSep($._expression), ')'),
 
-    if: $ => prec.left(seq(
+    if: $ => prec.right(seq(
       'if',
       alias($._expression, $.cond),
       alias($.block, $.then_clause),
