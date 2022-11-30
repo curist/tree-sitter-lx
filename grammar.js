@@ -178,7 +178,7 @@ module.exports = grammar({
     ),
     identifier: _ => /[a-zA-Z_][a-zA-Z0-9_]*/,
     number: _ => /-?\d+(\.\d+)?/,
-    string: _ => seq('"', repeat(choice(/[^"\\]/, /\\./)), '"'),
+    string: _ => seq('"', repeat(choice(/[^"\\]+/, /\\./)), '"'),
     boolean: _ => choice('true', 'false'),
     nil: _ => 'nil',
     lambda: $ => seq('fn', $.parameter_list, alias($.block, $.function_body)),

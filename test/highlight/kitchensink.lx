@@ -58,3 +58,9 @@ let mymod = {
   [1 + 2]: 3,
   [nnn]: "nil",
 }
+
+let empty = ""
+//          ^ string
+
+let url = "http://foo.bar"
+//               ^ string
