@@ -9,6 +9,8 @@
  (assignment)
  (unary_expression)
  (binary_expression)
+ (lambda)
+ (value_access)
 ] @indent
 
 (if (then_clause) @indent)
