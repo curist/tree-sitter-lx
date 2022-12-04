@@ -18,7 +18,8 @@
        "_1" "slurp" "int" "ord" "clock" "assoc" "push"
        "pop" "append" "butlast" "concat" "str" "type"
        "keys" "range" "each" "map" "filter" "fold"
-       "foldr" "len" "print" "groan"
+       "foldr" "len" "print" "groan" "random"
+       "getline" "read" "tonumber" "tolower" "toupper"
        ))
 
 [
