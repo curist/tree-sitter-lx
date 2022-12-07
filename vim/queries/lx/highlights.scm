@@ -20,6 +20,7 @@
        "keys" "range" "each" "map" "filter" "fold"
        "foldr" "len" "print" "groan" "random"
        "getline" "read" "tonumber" "tolower" "toupper"
+       "take" "drop" "join" "startsWith" "endsWith"
        ))
 
 [
