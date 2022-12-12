@@ -15,9 +15,9 @@
 (call name: (identifier) @function)
 (call name: (identifier) @function.builtin
       (#any-of? @function.builtin
-       "_1" "_2" "_3" "slurp" "int" "ord" "assoc" "push"
+       "_1" "_2" "_3" "do" "slurp" "int" "ord" "assoc" "push"
        "pop" "append" "butlast" "concat" "str" "type"
-       "keys" "range" "each" "map" "filter" "fold"
+       "keys" "range" "each" "map" "filter" "fold" "contains"
        "foldr" "len" "print" "groan" "random"
        "getline" "read" "tonumber" "tolower" "toupper"
        "take" "drop" "join" "startsWith" "endsWith"
