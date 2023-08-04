@@ -11,29 +11,27 @@
  (binary_expression)
  (lambda)
  (value_access)
-] @indent
+] @indent.begin
 
-(if (then_clause) @indent)
+(if (then_clause) @indent.begin)
+(if "else" @indent.begin)
 
 [
  ")"
  "}"
  "]"
-] @indent_end
+] @indent.end
 
 [
- "else"
  ")"
  "}"
  "]"
-] @branch
+] @indent.branch
 
 
-(shell_bang) @zero_indent
+; (shell_bang) @zero_indent
 
-(string) @ignore
+(string) @indent.ignore
 
-(comment) @auto
-
-
+(comment) @indent.auto
 
