@@ -27,8 +27,7 @@
 [
  "(" ")"
  "[" "]"
- "{" "}"
- "{" "}"
+ ".{" "{" "}"
 ] @punctuation.bracket
 
 [ "if" "else" ] @conditional
@@ -42,8 +41,6 @@
 
 [ ";" "," "." ] @punctuation.delimiter
 
-(hashmap open: ".{" @structure)
-(hashmap close: "}" @structure)
 (keyvalue key: (identifier) @field)
 
 (identifier) @variable
