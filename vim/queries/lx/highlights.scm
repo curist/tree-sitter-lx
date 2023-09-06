@@ -21,7 +21,7 @@
        "foldr" "len" "print" "println" "groan" "groanln" "random"
        "getline" "read" "tonumber" "tolower" "toupper"
        "take" "drop" "join" "startsWith" "endsWith"
-       "system"
+       "system" "exec"
        ))
 
 [
