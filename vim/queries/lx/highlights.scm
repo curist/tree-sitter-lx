@@ -12,17 +12,7 @@
 (function_declaration (function_name) @function)
 (function_declaration (parameter_list (identifier) @parameter))
 
-(call name: (identifier) @function)
-(call name: (identifier) @function.builtin
-      (#any-of? @function.builtin
-       "_1" "_2" "_3" "do" "slurp" "int" "ord" "assoc" "push"
-       "pop" "append" "butlast" "concat" "str" "type"
-       "keys" "range" "each" "map" "filter" "fold" "contains"
-       "foldr" "len" "print" "println" "groan" "groanln" "random"
-       "getline" "read" "tonumber" "tolower" "toupper"
-       "take" "drop" "join" "startsWith" "endsWith"
-       "system" "exec" "first" "last"
-       ))
+(call name: _ @function)
 
 [
  "(" ")"
