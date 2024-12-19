@@ -8,12 +8,6 @@
  (continue)
 ] @keyword
 
-"fn" @keyword.function
-(function_declaration (function_name) @function)
-(function_declaration (parameter_list (identifier) @parameter))
-
-(call name: _ @function)
-
 [
  "(" ")"
  "[" "]"
@@ -45,5 +39,11 @@
 
 (shell_bang) @preproc
 (comment) @comment
+
+"fn" @keyword.function
+(function_declaration (function_name) @function)
+(function_declaration (parameter_list (identifier) @parameter))
+
+(call name: _ @function)
 
 (ERROR) @error
