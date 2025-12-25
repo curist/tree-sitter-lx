@@ -77,7 +77,11 @@ The core grammar is defined in `grammar.js` using tree-sitter's JavaScript DSL. 
 
 **Block Semantics**: Blocks can contain expressions and end-of-block statements (return, break, continue). The `defer` statement is block-scoped.
 
-**For Loop Design**: Supports both C-style three-part loops and simple condition loops (grammar.js:89-105).
+**For Loop Design**: Supports three loop styles (grammar.js:89-113):
+- `for in` loops: `for x in array { }` (value only) or `for x, i in array { }` (value and index)
+  - Use `_` to ignore values: `for _, i in array { }` or `for x, _ in array { }`
+- C-style three-part loops: `for init; cond; iter { }`
+- Simple condition loops: `for cond { }`
 
 ### Generated Artifacts
 

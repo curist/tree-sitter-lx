@@ -90,6 +90,14 @@ module.exports = grammar({
       choice(
         seq(
           'for',
+          field('value', choice($.identifier, '_')),
+          optional(seq(',', field('index', choice($.identifier, '_')))),
+          'in',
+          field('iterable', $._expression),
+          $.block,
+        ),
+        seq(
+          'for',
           optional(alias($._expression, $.cond)),
           $.block,
         ),

@@ -17,6 +17,7 @@
 [ "if" "else" ] @conditional
 
 (for "for" @repeat)
+"in" @keyword
 
 "=" @operator
 (unary_expression operator: [_] @operator)

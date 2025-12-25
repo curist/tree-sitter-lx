@@ -311,3 +311,105 @@ for x {
     (argument_list
      (identifier))))))
 
+==========================
+for in - value only
+==========================
+for x in arr {}
+for item in getItems() {
+  print(item)
+}
+---
+(source_file
+ (for
+  (identifier)
+  (identifier)
+  (block))
+ (for
+  (identifier)
+  (call
+   (identifier)
+   (argument_list))
+  (block
+   (call
+    (identifier)
+    (argument_list
+     (identifier))))))
+
+==========================
+for in - value and index
+==========================
+for x, i in values {
+  print(x, i)
+}
+for item, idx in [1, 2, 3] {}
+---
+(source_file
+ (for
+  (identifier)
+  (identifier)
+  (identifier)
+  (block
+   (call
+    (identifier)
+    (argument_list
+     (identifier)
+     (identifier)))))
+ (for
+  (identifier)
+  (identifier)
+  (array
+   (number)
+   (number)
+   (number))
+  (block)))
+
+==========================
+for in - ignore with underscore
+==========================
+for _ in arr {}
+for _, i in items {
+  print(i)
+}
+for x, _ in data {}
+---
+(source_file
+ (for
+  (identifier)
+  (block))
+ (for
+  (identifier)
+  (identifier)
+  (block
+   (call
+    (identifier)
+    (argument_list
+     (identifier)))))
+ (for
+  (identifier)
+  (identifier)
+  (block)))
+
+==========================
+for in - nested loops
+==========================
+for x in outer {
+  for y in inner {
+    print(x, y)
+  }
+}
+---
+(source_file
+ (for
+  (identifier)
+  (identifier)
+  (block
+   (for
+    (identifier)
+    (identifier)
+    (block
+     (call
+      (identifier)
+      (argument_list
+       (identifier)
+       (identifier))))))))
+

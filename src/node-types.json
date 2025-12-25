@@ -1098,7 +1098,126 @@
   {
     "type": "for",
     "named": true,
-    "fields": {},
+    "fields": {
+      "index": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "_",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "iterable": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "assignment",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function_declaration",
+            "named": true
+          },
+          {
+            "type": "hashmap",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if",
+            "named": true
+          },
+          {
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "lambda",
+            "named": true
+          },
+          {
+            "type": "nil",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "value_access",
+            "named": true
+          },
+          {
+            "type": "variable_declaration",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "_",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -2427,6 +2546,10 @@
     "named": false
   },
   {
+    "type": "_",
+    "named": false
+  },
+  {
     "type": "and",
     "named": false
   },
@@ -2472,6 +2595,10 @@
   },
   {
     "type": "import",
+    "named": false
+  },
+  {
+    "type": "in",
     "named": false
   },
   {

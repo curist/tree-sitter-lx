@@ -49,6 +49,28 @@ for true and false {
 //        ^ keyword.operator
   kkthx = 10
 }
+
+for x in [1, 2, 3] {
+//^ repeat
+//  ^ variable
+//    ^ keyword
+  print(x)
+//^ function
+}
+for item, idx in items {
+//^ repeat
+//  ^ variable
+//        ^ variable
+//            ^ keyword
+//               ^ variable
+  print(item, idx)
+}
+for _, i in data {
+//     ^ variable
+//       ^ keyword
+  count = count + 1
+}
+
 let mymod = {
   .x: 1 -2 + -1,
   .foo: -a,
