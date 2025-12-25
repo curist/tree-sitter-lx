@@ -413,3 +413,92 @@ for x in outer {
        (identifier)
        (identifier))))))))
 
+==========================
+collect - basic
+==========================
+collect {}
+collect true {}
+---
+(source_file
+ (collect
+  (block))
+ (collect
+  (cond
+   (boolean))
+  (block)))
+
+==========================
+collect in - value only
+==========================
+collect x in arr {}
+collect item in [1, 2, 3] {
+  push(result, item)
+}
+---
+(source_file
+ (collect
+  (identifier)
+  (identifier)
+  (block))
+ (collect
+  (identifier)
+  (array
+   (number)
+   (number)
+   (number))
+  (block
+   (call
+    (identifier)
+    (argument_list
+     (identifier)
+     (identifier))))))
+
+==========================
+collect in - value and index
+==========================
+collect x, i in values {
+  print(x, i)
+}
+---
+(source_file
+ (collect
+  (identifier)
+  (identifier)
+  (identifier)
+  (block
+   (call
+    (identifier)
+    (argument_list
+     (identifier)
+     (identifier))))))
+
+==========================
+collect - C-style
+==========================
+collect i = 0; i < 10; i = i + 1 {
+  push(result, i)
+}
+---
+(source_file
+ (collect
+  (init
+   (assignment
+    (identifier)
+    (number)))
+  (cond
+   (binary_expression
+    (identifier)
+    (number)))
+  (iter
+   (assignment
+    (identifier)
+    (binary_expression
+     (identifier)
+     (number))))
+  (block
+   (call
+    (identifier)
+    (argument_list
+     (identifier)
+     (identifier))))))
+

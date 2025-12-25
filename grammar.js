@@ -47,6 +47,7 @@ module.exports = grammar({
       $.block,
       $.if,
       $.for,
+      $.collect,
     )),
     import: $ => prec.left('unary_statement', seq('import', $.string)),
 
@@ -103,6 +104,32 @@ module.exports = grammar({
         ),
         seq(
           'for',
+          optional(alias($._expression, $.init)),
+          ';',
+          optional(alias($._expression, $.cond)),
+          optional(seq(';', optional(alias($._expression, $.iter)))),
+          $.block,
+        ),
+      ),
+    ),
+
+    collect: $ => prec.left(1,
+      choice(
+        seq(
+          'collect',
+          field('value', choice($.identifier, '_')),
+          optional(seq(',', field('index', choice($.identifier, '_')))),
+          'in',
+          field('iterable', $._expression),
+          $.block,
+        ),
+        seq(
+          'collect',
+          optional(alias($._expression, $.cond)),
+          $.block,
+        ),
+        seq(
+          'collect',
           optional(alias($._expression, $.init)),
           ';',
           optional(alias($._expression, $.cond)),

@@ -77,11 +77,16 @@ The core grammar is defined in `grammar.js` using tree-sitter's JavaScript DSL. 
 
 **Block Semantics**: Blocks can contain expressions and end-of-block statements (return, break, continue). The `defer` statement is block-scoped.
 
-**For Loop Design**: Supports three loop styles (grammar.js:89-113):
+**For Loop Design**: Supports three loop styles (grammar.js:90-114):
 - `for in` loops: `for x in array { }` (value only) or `for x, i in array { }` (value and index)
   - Use `_` to ignore values: `for _, i in array { }` or `for x, _ in array { }`
 - C-style three-part loops: `for init; cond; iter { }`
 - Simple condition loops: `for cond { }`
+
+**Collect (List Comprehension)**: Mirrors `for` syntax but collects block results into an array (grammar.js:116-140):
+- `collect x in array { expr }` - collects results: `let doubled = collect x in [1,2,3] { x * 2 }` → `[2,4,6]`
+- Supports all `for` variants: `collect x, i in arr { }`, `collect cond { }`, `collect init; cond; iter { }`
+- Syntactically identical to `for`; semantic difference (return array) handled by interpreter
 
 ### Generated Artifacts
 

@@ -71,6 +71,16 @@ for _, i in data {
   count = count + 1
 }
 
+let doubled = collect x in [1, 2, 3] {
+//^ keyword
+//  ^ variable
+//              ^ repeat
+//                    ^ variable
+//                      ^ keyword
+  x * 2
+//^ variable
+}
+
 let mymod = {
   .x: 1 -2 + -1,
   .foo: -a,

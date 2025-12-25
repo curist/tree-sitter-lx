@@ -17,6 +17,7 @@
 [ "if" "else" ] @conditional
 
 (for "for" @repeat)
+(collect "collect" @repeat)
 "in" @keyword
 
 "=" @operator
