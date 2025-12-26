@@ -279,7 +279,7 @@ break // out of block, just an identifier (XXX: how do we deal with reserved key
 { continue break } // break/continue can only appear at end of block, thus second break is an ERROR
 for x {
   if _ {
-    break 1 // can optionally break with value
+    break
   }
   print(cont)
 }
@@ -303,9 +303,7 @@ for x {
     (cond
      (identifier))
     (then_clause
-     (break
-      (number))
-     (comment)))
+     (break)))
    (call
     (identifier)
     (argument_list

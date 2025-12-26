@@ -69,7 +69,7 @@ module.exports = grammar({
       $.return,
     ),
     return: $ => prec.left('unary_statement', seq('return', optional($._expression))),
-    break: $ => prec.left('unary_statement', seq('break', optional($._expression))),
+    break: _ => 'break',
     continue: _ => 'continue',
 
     _declaration: $ => choice(

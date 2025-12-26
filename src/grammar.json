@@ -344,29 +344,8 @@
       }
     },
     "break": {
-      "type": "PREC_LEFT",
-      "value": "unary_statement",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "break"
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_expression"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          }
-        ]
-      }
+      "type": "STRING",
+      "value": "break"
     },
     "continue": {
       "type": "STRING",
