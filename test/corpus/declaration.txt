@@ -69,3 +69,75 @@ a = b = 9
   (assignment
    (identifier)
    (number))))
+
+======================
+enum declaration - basic
+======================
+let Color = enum { Red, Green, Blue }
+---
+(source_file
+ (variable_declaration
+  (identifier)
+  (enum
+   (enum_variant
+    (identifier))
+   (enum_variant
+    (identifier))
+   (enum_variant
+    (identifier)))))
+
+======================
+enum declaration - with values
+======================
+let Status = enum { Pending = 0, Active = 1, Done = 2 }
+---
+(source_file
+ (variable_declaration
+  (identifier)
+  (enum
+   (enum_variant
+    (identifier)
+    (number))
+   (enum_variant
+    (identifier)
+    (number))
+   (enum_variant
+    (identifier)
+    (number)))))
+
+======================
+enum declaration - mixed values
+======================
+let Priority = enum { Low, Medium = 5, High }
+---
+(source_file
+ (variable_declaration
+  (identifier)
+  (enum
+   (enum_variant
+    (identifier))
+   (enum_variant
+    (identifier)
+    (number))
+   (enum_variant
+    (identifier)))))
+
+======================
+enum declaration - empty
+======================
+enum {}
+---
+(source_file
+ (enum))
+
+======================
+enum declaration - trailing comma
+======================
+enum { First, Second, }
+---
+(source_file
+ (enum
+  (enum_variant
+   (identifier))
+  (enum_variant
+   (identifier))))
