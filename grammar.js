@@ -44,6 +44,7 @@ module.exports = grammar({
       $._call,
       $.array,
       $.hashmap,
+      $.enum,
       $.block,
       $.if,
       $.for,
@@ -56,6 +57,12 @@ module.exports = grammar({
     _hashmap_key: $ => choice(
       $.identifier,
       seq('[', $._expression, ']'),
+    ),
+
+    enum: $ => seq('enum', '{', commaSep($.enum_variant), '}'),
+    enum_variant: $ => seq(
+      field('name', $.identifier),
+      optional(seq('=', field('value', $._expression))),
     ),
 
     block: $ => seq('{', seq(

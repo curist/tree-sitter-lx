@@ -4,6 +4,7 @@
  "let"
  "return"
  "defer"
+ "enum"
  (break)
  (continue)
 ] @keyword
@@ -33,6 +34,7 @@
 ((identifier) @constant
  (#match? @constant "^[A-Z][A-Za-z_0-9]{0,20}$"))
 
+(enum_variant name: (identifier) @constant)
 (keyvalue key: (identifier) @field)
 (function_declaration (parameter_list (identifier) @parameter))
 

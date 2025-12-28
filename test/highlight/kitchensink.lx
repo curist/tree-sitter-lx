@@ -91,6 +91,28 @@ let mymod = {
   [nnn]: "nil",
 }
 
+let Color = enum { Red, Green = 3, Blue }
+//^ keyword
+//  ^ constant
+//        ^ operator
+//          ^ keyword
+//                 ^ constant
+//                      ^ constant
+//                                  ^ constant
+
+let Status = enum {
+//^ keyword
+//  ^ constant
+//         ^ operator
+//           ^ keyword
+  Pending,
+//^ constant
+  Active = 1,
+//^ constant
+  Done
+//^ constant
+}
+
 let empty = ""
 //          ^ string
 

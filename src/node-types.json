@@ -36,6 +36,10 @@
           "named": true
         },
         {
+          "type": "enum",
+          "named": true
+        },
+        {
           "type": "for",
           "named": true
         },
@@ -127,6 +131,10 @@
           "named": true
         },
         {
+          "type": "enum",
+          "named": true
+        },
+        {
           "type": "for",
           "named": true
         },
@@ -215,6 +223,10 @@
         },
         {
           "type": "collect",
+          "named": true
+        },
+        {
+          "type": "enum",
           "named": true
         },
         {
@@ -314,6 +326,10 @@
           },
           {
             "type": "collect",
+            "named": true
+          },
+          {
+            "type": "enum",
             "named": true
           },
           {
@@ -493,6 +509,10 @@
             "named": true
           },
           {
+            "type": "enum",
+            "named": true
+          },
+          {
             "type": "for",
             "named": true
           },
@@ -594,6 +614,10 @@
         },
         {
           "type": "defer",
+          "named": true
+        },
+        {
+          "type": "enum",
           "named": true
         },
         {
@@ -702,6 +726,10 @@
           },
           {
             "type": "collect",
+            "named": true
+          },
+          {
+            "type": "enum",
             "named": true
           },
           {
@@ -826,6 +854,10 @@
           },
           {
             "type": "collect",
+            "named": true
+          },
+          {
+            "type": "enum",
             "named": true
           },
           {
@@ -962,6 +994,10 @@
           "named": true
         },
         {
+          "type": "enum",
+          "named": true
+        },
+        {
           "type": "for",
           "named": true
         },
@@ -1050,6 +1086,10 @@
         },
         {
           "type": "collect",
+          "named": true
+        },
+        {
+          "type": "enum",
           "named": true
         },
         {
@@ -1144,6 +1184,10 @@
           "named": true
         },
         {
+          "type": "enum",
+          "named": true
+        },
+        {
           "type": "for",
           "named": true
         },
@@ -1196,6 +1240,135 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "enum",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "enum_variant",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum_variant",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "assignment",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "collect",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function_declaration",
+            "named": true
+          },
+          {
+            "type": "hashmap",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if",
+            "named": true
+          },
+          {
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "lambda",
+            "named": true
+          },
+          {
+            "type": "nil",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "value_access",
+            "named": true
+          },
+          {
+            "type": "variable_declaration",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1254,6 +1427,10 @@
           },
           {
             "type": "collect",
+            "named": true
+          },
+          {
+            "type": "enum",
             "named": true
           },
           {
@@ -1394,6 +1571,10 @@
         },
         {
           "type": "defer",
+          "named": true
+        },
+        {
+          "type": "enum",
           "named": true
         },
         {
@@ -1589,6 +1770,10 @@
           "named": true
         },
         {
+          "type": "enum",
+          "named": true
+        },
+        {
           "type": "for",
           "named": true
         },
@@ -1677,6 +1862,10 @@
         },
         {
           "type": "collect",
+          "named": true
+        },
+        {
+          "type": "enum",
           "named": true
         },
         {
@@ -1787,6 +1976,10 @@
             "named": true
           },
           {
+            "type": "enum",
+            "named": true
+          },
+          {
             "type": "for",
             "named": true
           },
@@ -1878,6 +2071,10 @@
           },
           {
             "type": "collect",
+            "named": true
+          },
+          {
+            "type": "enum",
             "named": true
           },
           {
@@ -2007,6 +2204,10 @@
           "named": true
         },
         {
+          "type": "enum",
+          "named": true
+        },
+        {
           "type": "for",
           "named": true
         },
@@ -2096,6 +2297,10 @@
         },
         {
           "type": "collect",
+          "named": true
+        },
+        {
+          "type": "enum",
           "named": true
         },
         {
@@ -2212,6 +2417,10 @@
         },
         {
           "type": "defer",
+          "named": true
+        },
+        {
+          "type": "enum",
           "named": true
         },
         {
@@ -2332,6 +2541,10 @@
             "named": true
           },
           {
+            "type": "enum",
+            "named": true
+          },
+          {
             "type": "for",
             "named": true
           },
@@ -2421,6 +2634,10 @@
         },
         {
           "type": "collect",
+          "named": true
+        },
+        {
+          "type": "enum",
           "named": true
         },
         {
@@ -2523,6 +2740,10 @@
         },
         {
           "type": "collect",
+          "named": true
+        },
+        {
+          "type": "enum",
           "named": true
         },
         {
@@ -2722,6 +2943,10 @@
   },
   {
     "type": "else",
+    "named": false
+  },
+  {
+    "type": "enum",
     "named": false
   },
   {
