@@ -141,3 +141,57 @@ enum { First, Second, }
    (identifier))
   (enum_variant
    (identifier))))
+
+======================
+let record destructuring - basic
+======================
+let .{ OP, NODE } = import "src/types.lx"
+---
+(source_file
+ (variable_declaration
+  (destructuring_pattern
+   (destructuring_field (identifier))
+   (destructuring_field (identifier)))
+  (import
+   (string))))
+
+======================
+let record destructuring - with rename
+======================
+let .{ NODE: NodeKind } = types
+---
+(source_file
+ (variable_declaration
+  (destructuring_pattern
+   (destructuring_field
+    (identifier)
+    (identifier)))
+  (identifier)))
+
+======================
+let record destructuring - partial pick
+======================
+let .{ name, line, col } = someNode
+---
+(source_file
+ (variable_declaration
+  (destructuring_pattern
+   (destructuring_field (identifier))
+   (destructuring_field (identifier))
+   (destructuring_field (identifier)))
+  (identifier)))
+
+======================
+let record destructuring - mixed shorthand and rename
+======================
+let .{ a, b: renamedB, c } = rec
+---
+(source_file
+ (variable_declaration
+  (destructuring_pattern
+   (destructuring_field (identifier))
+   (destructuring_field
+    (identifier)
+    (identifier))
+   (destructuring_field (identifier)))
+  (identifier)))

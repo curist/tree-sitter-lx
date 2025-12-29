@@ -113,6 +113,45 @@ let Status = enum {
 //^ constant
 }
 
+// Record literal shorthand fields
+let name = "test"
+let debug = true
+let config = .{ name, debug }
+//^ keyword
+//  ^ variable
+//         ^ operator
+//              ^ field
+//                    ^ field
+
+let point = .{ x, y, z: 0 }
+//             ^ field
+//                ^ field
+//                   ^ field
+
+let mixed = .{ a, b: c, ["key"]: value }
+//             ^ field
+//                ^ field
+
+// Let record destructuring
+let .{ OP, NODE } = import "src/types.lx"
+//^ keyword
+//     ^ variable
+//         ^ variable
+//                ^ operator
+//                  ^ include
+
+let .{ name: userName, debug } = config
+//^ keyword
+//     ^ field
+//           ^ variable
+//                     ^ variable
+
+let .{ x, y, z } = point
+//^ keyword
+//     ^ variable
+//        ^ variable
+//           ^ variable
+
 let empty = ""
 //          ^ string
 

@@ -36,6 +36,10 @@
 
 (enum_variant name: (identifier) @constant)
 (keyvalue key: (identifier) @field)
+(shorthand_field (identifier) @field)
+(destructuring_field key: (identifier) @field)
+(destructuring_field name: (identifier) @variable)
+(destructuring_field shorthand: (identifier) @variable)
 (function_declaration (parameter_list (identifier) @parameter))
 
 (boolean) @boolean

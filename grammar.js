@@ -52,8 +52,13 @@ module.exports = grammar({
     )),
     import: $ => prec.left('unary_statement', seq('import', $.string)),
 
-    hashmap: $ => seq(field('open', '.{'), commaSep($.keyvalue), field('close', '}')),
+    hashmap: $ => seq(field('open', '.{'), commaSep($._hashmap_field), field('close', '}')),
+    _hashmap_field: $ => choice(
+      $.keyvalue,
+      $.shorthand_field,
+    ),
     keyvalue: $ => seq(field('key', $._hashmap_key), ':', field('value', $._expression)),
+    shorthand_field: $ => field('shorthand', $.identifier),
     _hashmap_key: $ => choice(
       $.identifier,
       seq('[', $._expression, ']'),
@@ -84,9 +89,18 @@ module.exports = grammar({
       $.function_declaration,
     ),
     variable_declaration: $ => prec.left('assignment', seq(
-      'let', field('name', $.identifier),
+      'let', field('pattern', $._let_pattern),
       optional(seq('=', $._expression)),
     )),
+    _let_pattern: $ => choice(
+      $.identifier,
+      $.destructuring_pattern,
+    ),
+    destructuring_pattern: $ => seq('.{', commaSep1($.destructuring_field), '}'),
+    destructuring_field: $ => choice(
+      seq(field('key', $.identifier), ':', field('name', $.identifier)),
+      field('shorthand', $.identifier),
+    ),
     function_declaration: $ => seq(
       'fn', alias($.identifier, $.function_name),
       $.parameter_list,

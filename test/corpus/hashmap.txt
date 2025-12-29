@@ -51,3 +51,35 @@ a = .{
  (comment)
  (hashmap
   (comment)))
+
+==================
+hashmap shorthand fields
+==================
+.{ x, y }
+.{ x, y: z }
+.{ x, y, debug: true }
+.{ a, b: c, ["key"]: value }
+---
+(source_file
+ (hashmap
+   (shorthand_field (identifier))
+   (shorthand_field (identifier)))
+ (hashmap
+   (shorthand_field (identifier))
+   (keyvalue
+     (identifier)
+     (identifier)))
+ (hashmap
+   (shorthand_field (identifier))
+   (shorthand_field (identifier))
+   (keyvalue
+     (identifier)
+     (boolean)))
+ (hashmap
+   (shorthand_field (identifier))
+   (keyvalue
+     (identifier)
+     (identifier))
+   (keyvalue
+     (string)
+     (identifier))))

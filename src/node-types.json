@@ -955,6 +955,7 @@
   {
     "type": "comment",
     "named": true,
+    "extra": true,
     "fields": {}
   },
   {
@@ -1142,6 +1143,57 @@
         },
         {
           "type": "variable_declaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "destructuring_field",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "shorthand": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "destructuring_pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "destructuring_field",
           "named": true
         }
       ]
@@ -1690,6 +1742,10 @@
       "types": [
         {
           "type": "keyvalue",
+          "named": true
+        },
+        {
+          "type": "shorthand_field",
           "named": true
         }
       ]
@@ -2263,6 +2319,22 @@
     }
   },
   {
+    "type": "shorthand_field",
+    "named": true,
+    "fields": {
+      "shorthand": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -2699,10 +2771,14 @@
     "type": "variable_declaration",
     "named": true,
     "fields": {
-      "name": {
+      "pattern": {
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "destructuring_pattern",
+            "named": true
+          },
           {
             "type": "identifier",
             "named": true
