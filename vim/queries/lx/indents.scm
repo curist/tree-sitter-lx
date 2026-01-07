@@ -10,6 +10,7 @@
  (binary_expression)
  (lambda)
  (value_access)
+ (enum)
 ] @indent.begin
 
 (if (then_clause) @indent.begin)
