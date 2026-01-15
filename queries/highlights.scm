@@ -31,9 +31,6 @@
 ; Identifiers: ordered from least to most specific
 (identifier) @variable
 
-((identifier) @constant
- (#match? @constant "^[A-Z][A-Za-z_0-9]*$"))
-
 (enum_variant name: (identifier) @constant)
 (keyvalue key: (identifier) @field)
 (shorthand_field (identifier) @field)
@@ -41,6 +38,9 @@
 (destructuring_field name: (identifier) @variable)
 (destructuring_field shorthand: (identifier) @variable)
 (function_declaration (parameter_list (identifier) @parameter))
+
+((identifier) @constant
+ (#match? @constant "^[A-Z][A-Za-z_0-9]*$"))
 
 (boolean) @boolean
 (string) @string

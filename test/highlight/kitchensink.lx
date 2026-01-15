@@ -135,8 +135,8 @@ let mixed = .{ a, b: c, ["key"]: value }
 // Let record destructuring
 let .{ OP, NODE } = import "src/types.lx"
 //^ keyword
-//     ^ variable
-//         ^ variable
+//     ^ constant
+//         ^ constant
 //                ^ operator
 //                  ^ include
 
