@@ -32,7 +32,7 @@
 (identifier) @variable
 
 ((identifier) @constant
- (#match? @constant "^[A-Z][A-Za-z_0-9]{0,20}$"))
+ (#match? @constant "^[A-Z][A-Za-z_0-9]*$"))
 
 (enum_variant name: (identifier) @constant)
 (keyvalue key: (identifier) @field)
