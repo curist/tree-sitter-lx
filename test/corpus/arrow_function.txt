@@ -1,0 +1,175 @@
+======================
+arrow function - single param expression body
+======================
+x => x + 1
+---
+(source_file
+ (arrow_function
+  (arrow_parameter)
+  (binary_expression
+   (identifier)
+   (number))))
+
+======================
+arrow function - single param block body
+======================
+x => { x + 1 }
+---
+(source_file
+ (arrow_function
+  (arrow_parameter)
+  (function_body
+   (binary_expression
+    (identifier)
+    (number)))))
+
+======================
+arrow function - no params
+======================
+() => 42
+---
+(source_file
+ (arrow_function
+  (arrow_parameter_list)
+  (number)))
+
+======================
+arrow function - single param with parens
+======================
+(x) => x + 1
+---
+(source_file
+ (arrow_function
+  (arrow_parameter_list
+   (arrow_parameter
+    (identifier)))
+  (binary_expression
+   (identifier)
+   (number))))
+
+======================
+arrow function - multiple params
+======================
+(x, y) => x + y
+---
+(source_file
+ (arrow_function
+  (arrow_parameter_list
+   (arrow_parameter
+    (identifier))
+   (arrow_parameter
+    (identifier)))
+  (binary_expression
+   (identifier)
+   (identifier))))
+
+======================
+arrow function - default value
+======================
+(x = 1) => x
+---
+(source_file
+ (arrow_function
+  (arrow_parameter_list
+   (arrow_parameter
+    (identifier)
+    (number)))
+  (identifier)))
+
+======================
+arrow function - multiple params with defaults
+======================
+(x, y = 2, z = 3) => x
+---
+(source_file
+ (arrow_function
+  (arrow_parameter_list
+   (arrow_parameter
+    (identifier))
+   (arrow_parameter
+    (identifier)
+    (number))
+   (arrow_parameter
+    (identifier)
+    (number)))
+  (identifier)))
+
+======================
+arrow function - complex default (array)
+======================
+(x = [1, 2, 3]) => x
+---
+(source_file
+ (arrow_function
+  (arrow_parameter_list
+   (arrow_parameter
+    (identifier)
+    (array
+     (number)
+     (number)
+     (number))))
+  (identifier)))
+
+======================
+arrow function - in variable declaration
+======================
+let double = x => x * 2
+---
+(source_file
+ (variable_declaration
+  (identifier)
+  (arrow_function
+   (arrow_parameter)
+   (binary_expression
+    (identifier)
+    (number)))))
+
+======================
+arrow function - in function call with block body
+======================
+map(arr, x => { x * 2 })
+---
+(source_file
+ (call
+  (identifier)
+  (argument_list
+   (identifier)
+   (arrow_function
+    (arrow_parameter)
+    (function_body
+     (binary_expression
+      (identifier)
+      (number)))))))
+
+======================
+arrow function - nested with block body
+======================
+x => y => { x + y }
+---
+(source_file
+ (arrow_function
+  (arrow_parameter)
+  (arrow_function
+   (arrow_parameter)
+   (function_body
+    (binary_expression
+     (identifier)
+     (identifier))))))
+
+======================
+arrow function - curried adder with block body
+======================
+let adder = x => y => { x + y }
+---
+(source_file
+ (variable_declaration
+  (identifier)
+  (arrow_function
+   (arrow_parameter)
+   (arrow_function
+    (arrow_parameter)
+    (function_body
+     (binary_expression
+      (identifier)
+      (identifier)))))))
+

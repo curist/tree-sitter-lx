@@ -157,3 +157,35 @@ let empty = ""
 
 let url = "http://foo.bar"
 //               ^ string
+
+// Arrow functions
+let double = x => x * 2
+//^ keyword
+//  ^ variable
+//         ^ operator
+//           ^ parameter
+//              ^ operator
+//                ^ variable
+
+let add = (a, b) => a + b
+//^ keyword
+//  ^ variable
+//      ^ operator
+//         ^ parameter
+//            ^ parameter
+//                ^ operator
+
+let withDefault = (x = 1) => x
+//                 ^ parameter
+//                   ^ operator
+//                        ^ operator
+
+let blockBody = x => { x + 1 }
+//              ^ parameter
+//                ^ operator
+
+let nested = x => y => { x + y }
+//           ^ parameter
+//             ^ operator
+//                ^ parameter
+//                  ^ operator

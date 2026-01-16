@@ -19,6 +19,7 @@ module.exports = grammar({
       'logical_and',
       'logical_or',
       'assignment',
+      'arrow',
       'unary_statement',
     ],
   ],
@@ -26,6 +27,10 @@ module.exports = grammar({
   conflicts: $ => [
     [$.source_file, $.binary_expression],
     [$.block, $.binary_expression],
+    [$._primary, $.arrow_parameter],
+    [$._expression, $.arrow_function],
+    [$.binary_expression, $._arrow_expression_body],
+    [$._expression, $.assignment],
   ],
 
   rules: {
@@ -231,6 +236,7 @@ module.exports = grammar({
       $.lambda,
       $.nil,
       $._parenthesized_expression,
+      $.arrow_function,
     ),
     identifier: _ => /[a-zA-Z_][a-zA-Z0-9_]*/,
     number: _ => /-?\d+(\.\d+)?/,
@@ -239,6 +245,35 @@ module.exports = grammar({
     nil: _ => 'nil',
     lambda: $ => seq('fn', $.parameter_list, alias($.block, $.function_body)),
     _parenthesized_expression: $ => seq('(', $._expression, ')'),
+
+    arrow_function: $ => prec.right('arrow', choice(
+      seq(
+        alias($.identifier, $.arrow_parameter),
+        '=>',
+        field('body', choice(
+          prec.dynamic(11, alias($.block, $.function_body)),
+          $._arrow_expression_body,
+        )),
+      ),
+      seq(
+        $.arrow_parameter_list,
+        '=>',
+        field('body', choice(
+          prec.dynamic(11, alias($.block, $.function_body)),
+          $._arrow_expression_body,
+        )),
+      ),
+    )),
+    arrow_parameter_list: $ => seq(
+      '(',
+      commaSep($.arrow_parameter),
+      ')',
+    ),
+    arrow_parameter: $ => seq(
+      field('name', $.identifier),
+      optional(seq('=', field('default', $._expression))),
+    ),
+    _arrow_expression_body: $ => $._expression,
 
     comment: _ => seq('//', /.*/),
   }

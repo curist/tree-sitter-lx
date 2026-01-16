@@ -22,6 +22,7 @@
 "in" @keyword
 
 "=" @operator
+"=>" @operator
 (unary_expression operator: [_] @operator)
 (binary_expression operator: [_] @operator)
 [ "and" "or" ] @keyword.operator
@@ -38,6 +39,8 @@
 (destructuring_field name: (identifier) @variable)
 (destructuring_field shorthand: (identifier) @variable)
 (function_declaration (parameter_list (identifier) @parameter))
+(arrow_function (arrow_parameter) @parameter)
+(arrow_parameter_list (arrow_parameter name: (identifier) @parameter))
 
 ((identifier) @constant
  (#match? @constant "^[A-Z][A-Za-z_0-9]*$"))
